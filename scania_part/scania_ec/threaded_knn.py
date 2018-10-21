@@ -80,7 +80,7 @@ def threadedKNN(k,n_fold,output):
 #create a list of threads
 threads = []
 
-k_values = (3,5,9,17)
+k_values = (5,23,65,200)
 #,33,65,399,401)
 n_folds = 3
 result={}
