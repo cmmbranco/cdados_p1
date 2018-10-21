@@ -36,9 +36,9 @@ def threadedKNN(k,n_fold,output):
         y_train = []
         x_test = []
         y_test = []
-        print(f"training a new model with K={k}")
+        
         for train_index, test_index in kf.split(X,Y):
-                
+            
             #print("Training a new split")
                 
             #data prep
@@ -51,12 +51,12 @@ def threadedKNN(k,n_fold,output):
                 y_test.append(Y[x])
             
             
-            
+            print(f"training a new model with K={k}")
             clf = KNeighborsClassifier(n_neighbors=k)
             model = clf.fit(x_train, y_train)
             results = model.predict(x_test)
             score = accuracy_score(y_test,results)
-                
+            print("model score acquired")    
             scores.append(score)
                 
         median = np.median(scores)
@@ -80,7 +80,8 @@ def threadedKNN(k,n_fold,output):
 #create a list of threads
 threads = []
 
-k_values = (3,5,9,17,33,65,399,401)
+k_values = (3,5,9,17)
+#,33,65,399,401)
 n_folds = 3
 result={}
 
