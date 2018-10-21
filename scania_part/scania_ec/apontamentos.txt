@@ -1,0 +1,24 @@
+
+
+
+##Most features missing in normal dataset
+ab_000 with 77.215% missing
+bm_000 with 65.915% missing
+bn_000 with 73.34833333333334% missing
+bo_000 with 77.22166666666666% missing
+bp_000 with 79.56666666666666% missing
+bq_000 with 81.20333333333333% missing
+br_000 with 82.10666666666665% missing
+cr_000 with 77.215% missing
+
+
+
+##Most features missing in positive dataset
+
+ab_000 with 77.10000000000001% missing
+ad_000 with 64.5% missing
+cf_000 with 64.5% missing
+cg_000 with 64.5% missing
+ch_000 with 64.5% missing
+co_000 with 64.5% missing
+cr_000 with 77.10000000000001% missing
