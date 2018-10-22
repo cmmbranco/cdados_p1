@@ -1,3 +1,4 @@
+from sklearn.tree import DecisionTreeClassifier
 import numpy as np
 from scipy import interp
 import matplotlib.pyplot as plt
@@ -6,12 +7,9 @@ from sklearn.metrics import roc_curve, auc
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import label_binarize
 
-from sklearn.neighbors.classification import KNeighborsClassifier
-
 
 
 n_fold = 10
-k = 53
 
 # #############################################################################
 # Data IO and generation
@@ -47,7 +45,8 @@ y_test = []
 
 # Run classifier with cross-validation and plot ROC curves
 cv = StratifiedKFold(n_splits=n_fold)
-clf = KNeighborsClassifier(n_neighbors=k)
+clf = DecisionTreeClassifier()
+
 
 tprs = []
 aucs = []
@@ -64,8 +63,8 @@ for train_index, test_index in kf.split(X,Y):
     y_test_bin = label_binarize(y_test, labels)
     #n_classes_nb = y_test_bin_nb.shape[1]
 
-
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
+    #probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
     # Compute ROC curve and area the curve
     fpr, tpr, thresholds = roc_curve(y_test_bin, probas_[:, 1])
     tprs.append(interp(mean_fpr, fpr, tpr))
@@ -99,6 +98,8 @@ plt.xlim([-0.05, 1.05])
 plt.ylim([-0.05, 1.05])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title(f'ROC Chart for KNN with k = {k} and {n_fold} folds')
+plt.title(f'ROC Chart for CART and {n_fold} folds')
 plt.legend(loc="lower right")
 plt.show()
+
+

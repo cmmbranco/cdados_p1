@@ -24,22 +24,8 @@ co_000 with 64.5% missing
 cr_000 with 77.10000000000001% missing
 
 
-KNN results for 'na' = 0 with K from 3 to 17 with 3 folds 
-range from 98 to 98% accuracy with 0.001 to 0.005 stdev 
-
-#more accuracies [K:{acc, stdv)]
-{5: (3, 0.9905252368690782, 0.002547956534131021), 
-23: (3, 0.9882002949926252, 0.0010588133416491686), 
-65: (3, 0.9858503537411565, 0.0011497484311151966), 
-200: (3, 0.9838754031149222, 0.0004496252795291862)}
 
 
-NB results for 'na' = 0
+KNN determines neighborhoods, so there must be a distance metric. This implies that all features must be numeric. Distance metrics may be effected by varying scales between attributes and also high-dimensional space.
 
-{1: (3, 0.9675166666666667, 0.000482179162831944)}
-
-
-Starting CART: 1
-model score acquired
-{1: (3, 0.9889375, 0.0)}
-
+DT on the other hand predicts a class for a given input vector. The attributes may be numeric or nominal.
