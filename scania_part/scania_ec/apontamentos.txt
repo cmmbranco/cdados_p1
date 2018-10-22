@@ -39,3 +39,7 @@ NB results for 'na' = 0
 {1: (3, 0.9675166666666667, 0.000482179162831944)}
 
 
+Starting CART: 1
+model score acquired
+{1: (3, 0.9889375, 0.0)}
+
