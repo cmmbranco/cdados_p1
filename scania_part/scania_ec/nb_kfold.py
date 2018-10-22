@@ -1,30 +1,12 @@
-import logging
-from threading import Thread
-
 import pandas as pd
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics.classification import accuracy_score
 from sklearn.model_selection import StratifiedKFold
-import numpy as np
-
-
-            
-            
-
-            
- 
-
-
-
 import numpy as np
 from scipy import interp
 import matplotlib.pyplot as plt
-import pandas as pd
 from sklearn.metrics import roc_curve, auc
-from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import label_binarize
 
-from sklearn.neighbors.classification import KNeighborsClassifier
 
 
 
