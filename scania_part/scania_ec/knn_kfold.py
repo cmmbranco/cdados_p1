@@ -11,7 +11,7 @@ from sklearn.neighbors.classification import KNeighborsClassifier
 
 
 n_fold = 5
-k = 3
+k = 10
 
 # #############################################################################
 # Data IO and generation
