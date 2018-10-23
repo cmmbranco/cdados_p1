@@ -73,6 +73,8 @@ b = sorted(outlier_lines, reverse=True)
 
 
 print(len(b))
+
+"""
 x = data
 #print(x)
 
@@ -96,7 +98,7 @@ pos = counter - negcount
 
 
 print(f"total {counter} wiht {pos} pos and {negcount}")
-
+"""
 
 """
 ##distribuição mantém apos remover os outliers vamos remover os na.
