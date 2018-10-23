@@ -27,7 +27,7 @@ labels = pd.unique(Y)
 Y = np.asarray(Y)
         
 kf = StratifiedKFold(n_splits=n_fold, random_state=None, shuffle=False)
-kf.get_n_splits(data)
+kf.get_n_splits(data)  #acho que é desnecessário, apenas devolve o número de splits que é 10 como foi definido em cima
         
         
             
