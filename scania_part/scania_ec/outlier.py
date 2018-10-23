@@ -48,6 +48,7 @@ for atrib in atribs:
     
     #print(atrib)
     
+    
     values = data[atrib]
     for value in values:
         if value == 'na':
