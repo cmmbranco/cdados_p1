@@ -7,7 +7,11 @@ import seaborn as sns
 
 data = pd.read_csv("../scania_dataset/aps_failure_training_set.csv")
 
+Y = data['class']
+
 data = data.iloc[:,1:]
+
+#print(Y)
 
 #data = np.asarray(data)
 
@@ -37,6 +41,8 @@ for atrib in atribs:
 
 
 outlier_lines = []
+
+
 for atrib in atribs:    
     lineCounter = 0
     
@@ -52,9 +58,68 @@ for atrib in atribs:
             if float(value) < atribRem[atrib][0] or float(value) > atribRem[atrib][1]:
                 #print("outlier")
                 outlier_lines.append(lineCounter)
-                lineCounter += 1
+            
+            lineCounter += 1
     
 
 
 outlier_lines = np.unique(outlier_lines)
-print(outlier_lines)
+
+
+#print(outlier_lines)
+
+b = sorted(outlier_lines, reverse=True)
+
+
+print(len(b))
+x = data
+#print(x)
+
+x1 = x.drop(b)
+print(x1)
+# 
+
+
+Y = Y.drop(b)
+#print(Y)
+
+
+negcount = 0
+counter = 0
+for x in Y:
+    counter+=1
+    if x == 'neg':
+        negcount +=1
+
+pos = counter - negcount
+
+
+print(f"total {counter} wiht {pos} pos and {negcount}")
+
+
+"""
+##distribuição mantém apos remover os outliers vamos remover os na.
+
+
+vec = []
+for tuple in x1.itertuples(index=True):
+    
+    for x in tuple:
+        if x == 'na':
+            vec.append(tuple[0])
+            break
+
+
+
+vec = pd.unique(vec)
+
+b = sorted(vec, reverse=True)
+
+x2 = x1.drop(b)
+
+#print(x2)
+
+
+#ficam 0 entradas ou seja todas têm pelo menos 1 na"""
+
+
