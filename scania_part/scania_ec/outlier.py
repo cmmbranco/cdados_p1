@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import scipy.stats
 
 
 
@@ -29,13 +30,18 @@ for atrib in atribs:
     
     n_samp = len(tval)
     
+
     q75, q25 = np.percentile(tval, [75 ,25])
+    #print(f"quartile 75 {q75}")
     iqr = q75 - q25
+    
+    #print(f"iqr for attribute {atrib} was {iqr}")
+    
     
     minThresh = q25 - 1.5*iqr
     maxThresh = q75 + 1.5*iqr
     
-    atribRem[atrib] = (minThresh, maxThresh)
+    atribRem[atrib] = (minThresh, maxThresh, iqr)
 
 
 
@@ -56,7 +62,7 @@ for atrib in atribs:
         
         
         else:
-            if float(value) < atribRem[atrib][0] or float(value) > atribRem[atrib][1]:
+            if (float(value) < atribRem[atrib][0] or float(value) > atribRem[atrib][1]) and atribRem[atrib][2] != 0:
                 #print("outlier")
                 outlier_lines.append(lineCounter)
             
