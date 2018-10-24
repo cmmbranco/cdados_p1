@@ -61,8 +61,6 @@ for atrib in atribs:
                 outlier_lines.append(lineCounter)
             
             lineCounter += 1
-    
-
 
 outlier_lines = np.unique(outlier_lines)
 
