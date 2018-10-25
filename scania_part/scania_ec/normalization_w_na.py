@@ -16,13 +16,15 @@ def normalize (dataframe):
     
 
     for col in range(dataframe.shape[1]): 
+        col_min = minimums[col]
+        col_max = maximums[col]
         for row in range (dataframe.shape[0]):
             print('row: {}   col:{}'.format(row,col))
             if dataframe.iloc[row,col] == np.nan:
                 dataframe_normalized.iloc[row,col]=np.nan
                 
             else:
-                dataframe_normalized.iloc[row,col]= (dataframe.iloc[row,col] - minimums[col]) / (maximums[col] - minimums[col])
+                dataframe_normalized.iloc[row,col]= (dataframe.iloc[row,col] - col_min) / (col_max - col_min)
 
     return dataframe_normalized
 
