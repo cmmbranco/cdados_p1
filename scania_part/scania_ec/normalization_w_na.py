@@ -48,7 +48,7 @@ def normalize2(dataframe):
         atri += 1
     
     return returnFrame
-
+"""
 def normalize (dataframe):
     maximums=[]
     minimums=[]
@@ -74,7 +74,7 @@ def normalize (dataframe):
                 dataframe_normalized.iloc[row,col]= (dataframe.iloc[row,col] - col_min) / (col_max - col_min)
 
     return dataframe_normalized
-
+"""
 
 data = pd.read_csv("../scania_dataset/aps_failure_training_set.csv", na_values='na')
 
