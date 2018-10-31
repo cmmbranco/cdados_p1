@@ -1,0 +1,232 @@
+## STATS FOR COL DATASET ##
+
+Number of Rows
+{'green': 98, 'hinselmann': 97, 'schiller': 92}
+
+CONFIRMED. NO MISSING VALUES
+
+-- GREEN --
+
+cervix_area with 0.0% missing
+os_area with 0.0% missing
+walls_area with 0.0% missing
+speculum_area with 0.0% missing
+artifacts_area with 0.0% missing
+cervix_artifacts_area with 0.0% missing
+os_artifacts_area with 0.0% missing
+walls_artifacts_area with 0.0% missing
+speculum_artifacts_area with 0.0% missing
+cervix_specularities_area with 0.0% missing
+os_specularities_area with 0.0% missing
+walls_specularities_area with 0.0% missing
+speculum_specularities_area with 0.0% missing
+specularities_area with 0.0% missing
+area_h_max_diff with 0.0% missing
+rgb_cervix_r_mean with 0.0% missing
+rgb_cervix_r_std with 0.0% missing
+rgb_cervix_r_mean_minus_std with 0.0% missing
+rgb_cervix_r_mean_plus_std with 0.0% missing
+rgb_cervix_g_mean with 0.0% missing
+rgb_cervix_g_std with 0.0% missing
+rgb_cervix_g_mean_minus_std with 0.0% missing
+rgb_cervix_g_mean_plus_std with 0.0% missing
+rgb_cervix_b_mean with 0.0% missing
+rgb_cervix_b_std with 0.0% missing
+rgb_cervix_b_mean_minus_std with 0.0% missing
+rgb_cervix_b_mean_plus_std with 0.0% missing
+rgb_total_r_mean with 0.0% missing
+rgb_total_r_std with 0.0% missing
+rgb_total_r_mean_minus_std with 0.0% missing
+rgb_total_r_mean_plus_std with 0.0% missing
+rgb_total_g_mean with 0.0% missing
+rgb_total_g_std with 0.0% missing
+rgb_total_g_mean_minus_std with 0.0% missing
+rgb_total_g_mean_plus_std with 0.0% missing
+rgb_total_b_mean with 0.0% missing
+rgb_total_b_std with 0.0% missing
+rgb_total_b_mean_minus_std with 0.0% missing
+rgb_total_b_mean_plus_std with 0.0% missing
+hsv_cervix_h_mean with 0.0% missing
+hsv_cervix_h_std with 0.0% missing
+hsv_cervix_s_mean with 0.0% missing
+hsv_cervix_s_std with 0.0% missing
+hsv_cervix_v_mean with 0.0% missing
+hsv_cervix_v_std with 0.0% missing
+hsv_total_h_mean with 0.0% missing
+hsv_total_h_std with 0.0% missing
+hsv_total_s_mean with 0.0% missing
+hsv_total_s_std with 0.0% missing
+hsv_total_v_mean with 0.0% missing
+hsv_total_v_std with 0.0% missing
+fit_cervix_hull_rate with 0.0% missing
+fit_cervix_hull_total with 0.0% missing
+fit_cervix_bbox_rate with 0.0% missing
+fit_cervix_bbox_total with 0.0% missing
+fit_circle_rate with 0.0% missing
+fit_circle_total with 0.0% missing
+fit_ellipse_rate with 0.0% missing
+fit_ellipse_total with 0.0% missing
+fit_ellipse_goodness with 0.0% missing
+dist_to_center_cervix with 0.0% missing
+dist_to_center_os with 0.0% missing
+experts::0 with 0.0% missing
+experts::1 with 0.0% missing
+experts::2 with 0.0% missing
+experts::3 with 0.0% missing
+experts::4 with 0.0% missing
+experts::5 with 0.0% missing
+consensus with 0.0% missing
+
+-- HINSELMANN --
+
+cervix_area with 0.0% missing
+os_area with 0.0% missing
+walls_area with 0.0% missing
+speculum_area with 0.0% missing
+artifacts_area with 0.0% missing
+cervix_artifacts_area with 0.0% missing
+os_artifacts_area with 0.0% missing
+walls_artifacts_area with 0.0% missing
+speculum_artifacts_area with 0.0% missing
+cervix_specularities_area with 0.0% missing
+os_specularities_area with 0.0% missing
+walls_specularities_area with 0.0% missing
+speculum_specularities_area with 0.0% missing
+specularities_area with 0.0% missing
+area_h_max_diff with 0.0% missing
+rgb_cervix_r_mean with 0.0% missing
+rgb_cervix_r_std with 0.0% missing
+rgb_cervix_r_mean_minus_std with 0.0% missing
+rgb_cervix_r_mean_plus_std with 0.0% missing
+rgb_cervix_g_mean with 0.0% missing
+rgb_cervix_g_std with 0.0% missing
+rgb_cervix_g_mean_minus_std with 0.0% missing
+rgb_cervix_g_mean_plus_std with 0.0% missing
+rgb_cervix_b_mean with 0.0% missing
+rgb_cervix_b_std with 0.0% missing
+rgb_cervix_b_mean_minus_std with 0.0% missing
+rgb_cervix_b_mean_plus_std with 0.0% missing
+rgb_total_r_mean with 0.0% missing
+rgb_total_r_std with 0.0% missing
+rgb_total_r_mean_minus_std with 0.0% missing
+rgb_total_r_mean_plus_std with 0.0% missing
+rgb_total_g_mean with 0.0% missing
+rgb_total_g_std with 0.0% missing
+rgb_total_g_mean_minus_std with 0.0% missing
+rgb_total_g_mean_plus_std with 0.0% missing
+rgb_total_b_mean with 0.0% missing
+rgb_total_b_std with 0.0% missing
+rgb_total_b_mean_minus_std with 0.0% missing
+rgb_total_b_mean_plus_std with 0.0% missing
+hsv_cervix_h_mean with 0.0% missing
+hsv_cervix_h_std with 0.0% missing
+hsv_cervix_s_mean with 0.0% missing
+hsv_cervix_s_std with 0.0% missing
+hsv_cervix_v_mean with 0.0% missing
+hsv_cervix_v_std with 0.0% missing
+hsv_total_h_mean with 0.0% missing
+hsv_total_h_std with 0.0% missing
+hsv_total_s_mean with 0.0% missing
+hsv_total_s_std with 0.0% missing
+hsv_total_v_mean with 0.0% missing
+hsv_total_v_std with 0.0% missing
+fit_cervix_hull_rate with 0.0% missing
+fit_cervix_hull_total with 0.0% missing
+fit_cervix_bbox_rate with 0.0% missing
+fit_cervix_bbox_total with 0.0% missing
+fit_circle_rate with 0.0% missing
+fit_circle_total with 0.0% missing
+fit_ellipse_rate with 0.0% missing
+fit_ellipse_total with 0.0% missing
+fit_ellipse_goodness with 0.0% missing
+dist_to_center_cervix with 0.0% missing
+dist_to_center_os with 0.0% missing
+experts::0 with 0.0% missing
+experts::1 with 0.0% missing
+experts::2 with 0.0% missing
+experts::3 with 0.0% missing
+experts::4 with 0.0% missing
+experts::5 with 0.0% missing
+consensus with 0.0% missing
+
+-- SCHILLER --
+
+cervix_area with 0.0% missing
+os_area with 0.0% missing
+walls_area with 0.0% missing
+speculum_area with 0.0% missing
+artifacts_area with 0.0% missing
+cervix_artifacts_area with 0.0% missing
+os_artifacts_area with 0.0% missing
+walls_artifacts_area with 0.0% missing
+speculum_artifacts_area with 0.0% missing
+cervix_specularities_area with 0.0% missing
+os_specularities_area with 0.0% missing
+walls_specularities_area with 0.0% missing
+speculum_specularities_area with 0.0% missing
+specularities_area with 0.0% missing
+area_h_max_diff with 0.0% missing
+rgb_cervix_r_mean with 0.0% missing
+rgb_cervix_r_std with 0.0% missing
+rgb_cervix_r_mean_minus_std with 0.0% missing
+rgb_cervix_r_mean_plus_std with 0.0% missing
+rgb_cervix_g_mean with 0.0% missing
+rgb_cervix_g_std with 0.0% missing
+rgb_cervix_g_mean_minus_std with 0.0% missing
+rgb_cervix_g_mean_plus_std with 0.0% missing
+rgb_cervix_b_mean with 0.0% missing
+rgb_cervix_b_std with 0.0% missing
+rgb_cervix_b_mean_minus_std with 0.0% missing
+rgb_cervix_b_mean_plus_std with 0.0% missing
+rgb_total_r_mean with 0.0% missing
+rgb_total_r_std with 0.0% missing
+rgb_total_r_mean_minus_std with 0.0% missing
+rgb_total_r_mean_plus_std with 0.0% missing
+rgb_total_g_mean with 0.0% missing
+rgb_total_g_std with 0.0% missing
+rgb_total_g_mean_minus_std with 0.0% missing
+rgb_total_g_mean_plus_std with 0.0% missing
+rgb_total_b_mean with 0.0% missing
+rgb_total_b_std with 0.0% missing
+rgb_total_b_mean_minus_std with 0.0% missing
+rgb_total_b_mean_plus_std with 0.0% missing
+hsv_cervix_h_mean with 0.0% missing
+hsv_cervix_h_std with 0.0% missing
+hsv_cervix_s_mean with 0.0% missing
+hsv_cervix_s_std with 0.0% missing
+hsv_cervix_v_mean with 0.0% missing
+hsv_cervix_v_std with 0.0% missing
+hsv_total_h_mean with 0.0% missing
+hsv_total_h_std with 0.0% missing
+hsv_total_s_mean with 0.0% missing
+hsv_total_s_std with 0.0% missing
+hsv_total_v_mean with 0.0% missing
+hsv_total_v_std with 0.0% missing
+fit_cervix_hull_rate with 0.0% missing
+fit_cervix_hull_total with 0.0% missing
+fit_cervix_bbox_rate with 0.0% missing
+fit_cervix_bbox_total with 0.0% missing
+fit_circle_rate with 0.0% missing
+fit_circle_total with 0.0% missing
+fit_ellipse_rate with 0.0% missing
+fit_ellipse_total with 0.0% missing
+fit_ellipse_goodness with 0.0% missing
+dist_to_center_cervix with 0.0% missing
+dist_to_center_os with 0.0% missing
+experts::0 with 0.0% missing
+experts::1 with 0.0% missing
+experts::2 with 0.0% missing
+experts::3 with 0.0% missing
+experts::4 with 0.0% missing
+experts::5 with 0.0% missing
+consensus with 0.0% missing
+
+----------------------------------------------------------------------
+
+CHECKING FOR CONSENSUAL COUNTS:
+
+-- GREEN --
+
+-- HINSELMANN --
+
+-- SCHILLER --
