@@ -29,7 +29,7 @@ for column in data:
     for x in data[column]:
         if x == 'na':
             dic[column] += 1
-    
+
 
 for word in dic:
     dic[word] = (dic[word]/nrows)*100.0
@@ -37,74 +37,4 @@ for word in dic:
 for x in dic:
     if dic[x] >= 60:
         print(f"{x} with {dic[x]}% missing")
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
