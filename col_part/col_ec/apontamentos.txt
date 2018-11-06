@@ -6,7 +6,6 @@ Number of Rows
 CONFIRMED. NO MISSING VALUES
 
 -- GREEN --
-
 cervix_area with 0.0% missing
 os_area with 0.0% missing
 walls_area with 0.0% missing
@@ -78,7 +77,6 @@ experts::5 with 0.0% missing
 consensus with 0.0% missing
 
 -- HINSELMANN --
-
 cervix_area with 0.0% missing
 os_area with 0.0% missing
 walls_area with 0.0% missing
@@ -150,7 +148,6 @@ experts::5 with 0.0% missing
 consensus with 0.0% missing
 
 -- SCHILLER --
-
 cervix_area with 0.0% missing
 os_area with 0.0% missing
 walls_area with 0.0% missing
@@ -232,8 +229,6 @@ Consensus on hinselmann dataset is 84.5360824742268 %
 -- SCHILLER --
 Consensus on schiller dataset is 72.82608695652173 %
 
-NOTE: NEED TO CHECK BY HAND TOO
-
 ------------------------------------------------------------------------
 
 CHECKING FOR OUTLIERS COUNTS:
@@ -260,3 +255,230 @@ CHECKING FOR OUTLIERS COUNTS:
 80
 
 -----------------------------------------------------------------------
+ALGORITHMS
+-- CART --
+
+-- FOREST --
+
+-- KNN --
+
+-- NAIVE BAYES --
+
+-- SMOTE --
+
+----------------------------------------------------------------------
+% of 0's per feature
+
+-- GREEN --
+cervix_area with 4.081632653061225% of 0s
+os_area with 9.183673469387756% of 0s
+walls_area with 19.387755102040817% of 0s
+speculum_area with 21.428571428571427% of 0s
+artifacts_area with 48.97959183673469% of 0s
+cervix_artifacts_area with 66.3265306122449% of 0s
+os_artifacts_area with 85.71428571428571% of 0s
+walls_artifacts_area with 63.26530612244898% of 0s
+speculum_artifacts_area with 65.3061224489796% of 0s
+cervix_specularities_area with 10.204081632653061% of 0s
+os_specularities_area with 75.51020408163265% of 0s
+walls_specularities_area with 64.28571428571429% of 0s
+speculum_specularities_area with 42.857142857142854% of 0s
+specularities_area with 4.081632653061225% of 0s
+area_h_max_diff with 9.183673469387756% of 0s
+rgb_cervix_r_mean with 4.081632653061225% of 0s
+rgb_cervix_r_std with 4.081632653061225% of 0s
+rgb_cervix_r_mean_minus_std with 4.081632653061225% of 0s
+rgb_cervix_r_mean_plus_std with 4.081632653061225% of 0s
+rgb_cervix_g_mean with 4.081632653061225% of 0s
+rgb_cervix_g_std with 4.081632653061225% of 0s
+rgb_cervix_g_mean_minus_std with 4.081632653061225% of 0s
+rgb_cervix_g_mean_plus_std with 4.081632653061225% of 0s
+rgb_cervix_b_mean with 4.081632653061225% of 0s
+rgb_cervix_b_std with 4.081632653061225% of 0s
+rgb_cervix_b_mean_minus_std with 4.081632653061225% of 0s
+rgb_cervix_b_mean_plus_std with 4.081632653061225% of 0s
+rgb_total_r_mean with 0.0% of 0s
+rgb_total_r_std with 0.0% of 0s
+rgb_total_r_mean_minus_std with 0.0% of 0s
+rgb_total_r_mean_plus_std with 0.0% of 0s
+rgb_total_g_mean with 0.0% of 0s
+rgb_total_g_std with 0.0% of 0s
+rgb_total_g_mean_minus_std with 0.0% of 0s
+rgb_total_g_mean_plus_std with 0.0% of 0s
+rgb_total_b_mean with 0.0% of 0s
+rgb_total_b_std with 0.0% of 0s
+rgb_total_b_mean_minus_std with 0.0% of 0s
+rgb_total_b_mean_plus_std with 0.0% of 0s
+hsv_cervix_h_mean with 0.0% of 0s
+hsv_cervix_h_std with 4.081632653061225% of 0s
+hsv_cervix_s_mean with 4.081632653061225% of 0s
+hsv_cervix_s_std with 4.081632653061225% of 0s
+hsv_cervix_v_mean with 4.081632653061225% of 0s
+hsv_cervix_v_std with 4.081632653061225% of 0s
+hsv_total_h_mean with 0.0% of 0s
+hsv_total_h_std with 0.0% of 0s
+hsv_total_s_mean with 0.0% of 0s
+hsv_total_s_std with 0.0% of 0s
+hsv_total_v_mean with 0.0% of 0s
+hsv_total_v_std with 0.0% of 0s
+fit_cervix_hull_rate with 4.081632653061225% of 0s
+fit_cervix_hull_total with 4.081632653061225% of 0s
+fit_cervix_bbox_rate with 4.081632653061225% of 0s
+fit_cervix_bbox_total with 4.081632653061225% of 0s
+fit_circle_rate with 4.081632653061225% of 0s
+fit_circle_total with 4.081632653061225% of 0s
+fit_ellipse_rate with 4.081632653061225% of 0s
+fit_ellipse_total with 4.081632653061225% of 0s
+fit_ellipse_goodness with 4.081632653061225% of 0s
+dist_to_center_cervix with 0.0% of 0s
+dist_to_center_os with 0.0% of 0s
+experts::0 with 41.83673469387755% of 0s
+experts::1 with 44.89795918367347% of 0s
+experts::2 with 58.16326530612245% of 0s
+experts::3 with 24.489795918367346% of 0s
+experts::4 with 16.3265306122449% of 0s
+experts::5 with 59.183673469387756% of 0s
+consensus with 31.63265306122449% of 0s
+
+
+-- HINSELMANN --
+cervix_area with 1.0309278350515463% of 0s
+os_area with 11.34020618556701% of 0s
+walls_area with 11.34020618556701% of 0s
+speculum_area with 9.278350515463918% of 0s
+artifacts_area with 26.804123711340207% of 0s
+cervix_artifacts_area with 41.23711340206185% of 0s
+os_artifacts_area with 73.19587628865979% of 0s
+walls_artifacts_area with 59.79381443298969% of 0s
+speculum_artifacts_area with 58.76288659793815% of 0s
+cervix_specularities_area with 2.0618556701030926% of 0s
+os_specularities_area with 57.73195876288659% of 0s
+walls_specularities_area with 53.608247422680414% of 0s
+speculum_specularities_area with 32.98969072164948% of 0s
+specularities_area with 0.0% of 0s
+area_h_max_diff with 11.34020618556701% of 0s
+rgb_cervix_r_mean with 1.0309278350515463% of 0s
+rgb_cervix_r_std with 1.0309278350515463% of 0s
+rgb_cervix_r_mean_minus_std with 1.0309278350515463% of 0s
+rgb_cervix_r_mean_plus_std with 1.0309278350515463% of 0s
+rgb_cervix_g_mean with 1.0309278350515463% of 0s
+rgb_cervix_g_std with 1.0309278350515463% of 0s
+rgb_cervix_g_mean_minus_std with 1.0309278350515463% of 0s
+rgb_cervix_g_mean_plus_std with 1.0309278350515463% of 0s
+rgb_cervix_b_mean with 1.0309278350515463% of 0s
+rgb_cervix_b_std with 1.0309278350515463% of 0s
+rgb_cervix_b_mean_minus_std with 1.0309278350515463% of 0s
+rgb_cervix_b_mean_plus_std with 1.0309278350515463% of 0s
+rgb_total_r_mean with 0.0% of 0s
+rgb_total_r_std with 0.0% of 0s
+rgb_total_r_mean_minus_std with 0.0% of 0s
+rgb_total_r_mean_plus_std with 0.0% of 0s
+rgb_total_g_mean with 0.0% of 0s
+rgb_total_g_std with 0.0% of 0s
+rgb_total_g_mean_minus_std with 0.0% of 0s
+rgb_total_g_mean_plus_std with 0.0% of 0s
+rgb_total_b_mean with 0.0% of 0s
+rgb_total_b_std with 0.0% of 0s
+rgb_total_b_mean_minus_std with 0.0% of 0s
+rgb_total_b_mean_plus_std with 0.0% of 0s
+hsv_cervix_h_mean with 0.0% of 0s
+hsv_cervix_h_std with 1.0309278350515463% of 0s
+hsv_cervix_s_mean with 1.0309278350515463% of 0s
+hsv_cervix_s_std with 1.0309278350515463% of 0s
+hsv_cervix_v_mean with 1.0309278350515463% of 0s
+hsv_cervix_v_std with 1.0309278350515463% of 0s
+hsv_total_h_mean with 0.0% of 0s
+hsv_total_h_std with 0.0% of 0s
+hsv_total_s_mean with 0.0% of 0s
+hsv_total_s_std with 0.0% of 0s
+hsv_total_v_mean with 0.0% of 0s
+hsv_total_v_std with 0.0% of 0s
+fit_cervix_hull_rate with 1.0309278350515463% of 0s
+fit_cervix_hull_total with 1.0309278350515463% of 0s
+fit_cervix_bbox_rate with 1.0309278350515463% of 0s
+fit_cervix_bbox_total with 1.0309278350515463% of 0s
+fit_circle_rate with 1.0309278350515463% of 0s
+fit_circle_total with 1.0309278350515463% of 0s
+fit_ellipse_rate with 1.0309278350515463% of 0s
+fit_ellipse_total with 1.0309278350515463% of 0s
+fit_ellipse_goodness with 1.0309278350515463% of 0s
+dist_to_center_cervix with 0.0% of 0s
+dist_to_center_os with 0.0% of 0s
+experts::0 with 14.432989690721648% of 0s
+experts::1 with 41.23711340206185% of 0s
+experts::2 with 27.835051546391753% of 0s
+experts::3 with 32.98969072164948% of 0s
+experts::4 with 15.463917525773196% of 0s
+experts::5 with 17.525773195876287% of 0s
+consensus with 15.463917525773196% of 0s
+
+-- SCHILLER --
+cervix_area with 4.3478260869565215% of 0s
+os_area with 9.782608695652174% of 0s
+walls_area with 20.652173913043477% of 0s
+speculum_area with 22.82608695652174% of 0s
+artifacts_area with 52.17391304347826% of 0s
+cervix_artifacts_area with 70.65217391304348% of 0s
+os_artifacts_area with 91.30434782608695% of 0s
+walls_artifacts_area with 67.3913043478261% of 0s
+speculum_artifacts_area with 69.56521739130434% of 0s
+cervix_specularities_area with 10.869565217391305% of 0s
+os_specularities_area with 80.43478260869566% of 0s
+walls_specularities_area with 68.47826086956522% of 0s
+speculum_specularities_area with 45.65217391304348% of 0s
+specularities_area with 4.3478260869565215% of 0s
+area_h_max_diff with 9.782608695652174% of 0s
+rgb_cervix_r_mean with 4.3478260869565215% of 0s
+rgb_cervix_r_std with 4.3478260869565215% of 0s
+rgb_cervix_r_mean_minus_std with 4.3478260869565215% of 0s
+rgb_cervix_r_mean_plus_std with 4.3478260869565215% of 0s
+rgb_cervix_g_mean with 4.3478260869565215% of 0s
+rgb_cervix_g_std with 4.3478260869565215% of 0s
+rgb_cervix_g_mean_minus_std with 4.3478260869565215% of 0s
+rgb_cervix_g_mean_plus_std with 4.3478260869565215% of 0s
+rgb_cervix_b_mean with 4.3478260869565215% of 0s
+rgb_cervix_b_std with 4.3478260869565215% of 0s
+rgb_cervix_b_mean_minus_std with 4.3478260869565215% of 0s
+rgb_cervix_b_mean_plus_std with 4.3478260869565215% of 0s
+rgb_total_r_mean with 0.0% of 0s
+rgb_total_r_std with 0.0% of 0s
+rgb_total_r_mean_minus_std with 0.0% of 0s
+rgb_total_r_mean_plus_std with 0.0% of 0s
+rgb_total_g_mean with 0.0% of 0s
+rgb_total_g_std with 0.0% of 0s
+rgb_total_g_mean_minus_std with 0.0% of 0s
+rgb_total_g_mean_plus_std with 0.0% of 0s
+rgb_total_b_mean with 0.0% of 0s
+rgb_total_b_std with 0.0% of 0s
+rgb_total_b_mean_minus_std with 0.0% of 0s
+rgb_total_b_mean_plus_std with 0.0% of 0s
+hsv_cervix_h_mean with 0.0% of 0s
+hsv_cervix_h_std with 4.3478260869565215% of 0s
+hsv_cervix_s_mean with 4.3478260869565215% of 0s
+hsv_cervix_s_std with 4.3478260869565215% of 0s
+hsv_cervix_v_mean with 4.3478260869565215% of 0s
+hsv_cervix_v_std with 4.3478260869565215% of 0s
+hsv_total_h_mean with 0.0% of 0s
+hsv_total_h_std with 0.0% of 0s
+hsv_total_s_mean with 0.0% of 0s
+hsv_total_s_std with 0.0% of 0s
+hsv_total_v_mean with 0.0% of 0s
+hsv_total_v_std with 0.0% of 0s
+fit_cervix_hull_rate with 4.3478260869565215% of 0s
+fit_cervix_hull_total with 4.3478260869565215% of 0s
+fit_cervix_bbox_rate with 4.3478260869565215% of 0s
+fit_cervix_bbox_total with 4.3478260869565215% of 0s
+fit_circle_rate with 4.3478260869565215% of 0s
+fit_circle_total with 4.3478260869565215% of 0s
+fit_ellipse_rate with 4.3478260869565215% of 0s
+fit_ellipse_total with 4.3478260869565215% of 0s
+fit_ellipse_goodness with 4.3478260869565215% of 0s
+dist_to_center_cervix with 0.0% of 0s
+dist_to_center_os with 0.0% of 0s
+experts::0 with 44.565217391304344% of 0s
+experts::1 with 47.82608695652174% of 0s
+experts::2 with 61.95652173913043% of 0s
+experts::3 with 26.08695652173913% of 0s
+experts::4 with 17.391304347826086% of 0s
+experts::5 with 63.04347826086957% of 0s
+consensus with 33.69565217391305% of 0s
