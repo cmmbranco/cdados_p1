@@ -29,7 +29,7 @@ for column in data:
     for x in data[column]:
         if x == 'na':
             dic[column] += 1
-    
+
 
 for word in dic:
     dic[word] = (dic[word]/nrows)*100.0
@@ -109,4 +109,6 @@ print(n_feat)
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/cmmbranco/cdados_p1.git
 

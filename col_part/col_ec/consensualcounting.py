@@ -10,8 +10,6 @@ dic['green'] = green_data.shape[0]
 dic['hinselmann'] = hinselmann_data.shape[0]
 dic['schiller'] = schiller_data.shape[0]
 
-print (dic)
-
 data_array = [green_data, hinselmann_data, schiller_data]
 dic_array = ['green', 'hinselmann', 'schiller']
 counter = 0
