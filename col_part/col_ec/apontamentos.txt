@@ -16,11 +16,11 @@ CONFIRMED. NO MISSING VALUES
 CHECKING FOR CONSENSUAL COUNTS:
 
 -- GREEN --
-Consensus on green dataset is 68.36734693877551 %
+Consensus(1) on green dataset is 68.36734693877551 %
 -- HINSELMANN --
-Consensus on hinselmann dataset is 84.5360824742268 %
+Consensus(1) on hinselmann dataset is 84.5360824742268 %
 -- SCHILLER --
-Consensus on schiller dataset is 72.82608695652173 %
+Consensus(1) on schiller dataset is 72.82608695652173 %
 
 ------------------------------------------------------------------------
 

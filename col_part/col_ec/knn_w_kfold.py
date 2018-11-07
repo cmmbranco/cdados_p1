@@ -9,6 +9,7 @@ from sklearn.preprocessing import label_binarize
 
 from sklearn.neighbors.classification import KNeighborsClassifier
 from sklearn.preprocessing import normalize
+from sklearn.utils import resample
 
 n_fold = 10
 k = 3
@@ -68,6 +69,11 @@ aucs = []
 mean_fpr = np.linspace(0, 1, 100)
 
 i = 0
+
+####################################################################
+# RESAMPLING (COMMENT IT IF WANT TO CHECK RESULTS WITH NO RESAMPLE #
+####################################################################
+X_green, Y_green = resample(X_green, Y_green)
 
 for train_index, test_index in kf.split(X_green, Y_green):
     print("TRAIN:", train_index, "TEST:", test_index)

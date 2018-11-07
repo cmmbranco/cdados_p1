@@ -7,6 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import roc_curve, auc
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import label_binarize
+from sklearn.utils import resample
 
 from sklearn.preprocessing import normalize
 
@@ -77,6 +78,11 @@ aucs = []
 mean_fpr = np.linspace(0, 1, 100)
 
 i = 0
+
+####################################################################
+# RESAMPLING (COMMENT IT IF WANT TO CHECK RESULTS WITH NO RESAMPLE #
+####################################################################
+X_green, Y_green = resample(X_green, Y_green)
 
 for train_index, test_index in kf.split(X_green, Y_green):
     print('TRAIN:', train_index, 'TEST:', test_index)

@@ -75,23 +75,23 @@ def plot_2d_space(X, y, label='Classes'):
     plt.legend(loc='upper right')
 
 
-green_data = pd.read_csv('../col_dataset/green.csv')
-subsampled_data = sampler(green_data)
+schiller_data = pd.read_csv('../col_dataset/hinselmann.csv')
+subsampled_data = sampler(schiller_data)
 
 print (subsampled_data)
 
-X_subsample = subsampled_data.iloc[:, :68]
+X_subsample = subsampled_data.iloc[:, :62]
 X_subsample = np.asarray(X_subsample)
 Y_subsample = subsampled_data['consensus']
 
-X = green_data.iloc[:, :68]
+X = schiller_data.iloc[:, :62]
 X = np.asarray(X)
 
-Y = green_data['consensus']
+Y = schiller_data['consensus']
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.7, stratify=Y)
 
-green_data['consensus'].value_counts().plot(kind='bar')
+schiller_data['consensus'].value_counts().plot(kind='bar')
 
 clf = KNeighborsClassifier(n_neighbors=3)
 clf.fit(x_train, y_train)
@@ -124,6 +124,13 @@ plot_2d_space(X_train_smoted, Y_train_smoted, 'SMOTE over-sampling')
 from sklearn.utils import resample
 
 x_train_res, y_train_res = resample(x_train, y_train)
+
+clf = KNeighborsClassifier(n_neighbors=3)
+clf.fit(x_train_res,y_train_res)
+results = clf.predict(x_test)
+
+acc = accuracy_score(y_test, results)
+print (f'resampled acc was {acc}')
 
 plot_2d_space(x_train_res, y_train_res, 'Resample')
 
