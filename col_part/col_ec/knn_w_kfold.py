@@ -8,9 +8,10 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import label_binarize
 
 from sklearn.neighbors.classification import KNeighborsClassifier
+from sklearn.preprocessing import normalize
 
 n_fold = 10
-k = 3
+k = 57
 
 ##########################
 # Data IO and generation #
@@ -50,6 +51,12 @@ x_train = []
 y_train = []
 x_test = []
 y_test = []
+
+#############################################################################
+# Normalization (COMMENT IT IF WANT TO CHECK RESULTS WITH NO NORMALIZATION) #
+#############################################################################
+X_green = normalize(X_green, axis=0, norm='max')
+
 
 #########################3#########
 # Classification and ROC Analysis #
