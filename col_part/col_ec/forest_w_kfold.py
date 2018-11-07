@@ -11,7 +11,7 @@ from sklearn.preprocessing import label_binarize
 from sklearn.preprocessing import normalize
 
 n_fold = 10
-k = 53
+k = 57
 
 ##########################
 # Data IO and generation #
@@ -23,9 +23,9 @@ green_data = pd.read_csv('../col_dataset/green.csv')
 hinselmann_data = pd.read_csv('../col_dataset/hinselmann.csv')
 schiller_data = pd.read_csv('../col_dataset/schiller.csv')
 
-X_green = green_data.iloc[:,:68]
-X_hinselmann = hinselmann_data.iloc[:,:68]
-X_schiller = schiller_data.iloc[:,:68]
+X_green = green_data.iloc[:,:62]
+X_hinselmann = hinselmann_data.iloc[:,:62]
+X_schiller = schiller_data.iloc[:,:62]
 
 X_green = np.asarray(X_green)
 X_hinselmann = np.asarray(X_hinselmann)

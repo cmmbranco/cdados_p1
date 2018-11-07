@@ -7,6 +7,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_curve, auc
 from sklearn.preprocessing import label_binarize
+from sklearn.preprocessing import normalize
 
 n_fold = 10
 
@@ -31,9 +32,9 @@ print (len(hinselmann_featureNames))
 print ('nr_features schiller:')
 print (len(schiller_featureNames))
 
-X_green = green_data.iloc[:,:68]
-X_hinselmann = hinselmann_data.iloc[:,:68]
-X_schiller = schiller_data.iloc[:,:68]
+X_green = green_data.iloc[:,:62]
+X_hinselmann = hinselmann_data.iloc[:,:62]
+X_schiller = schiller_data.iloc[:,:62]
 
 X_green = np.asarray(X_green)
 X_hinselmann = np.asarray(X_hinselmann)
@@ -60,6 +61,11 @@ x_train = []
 y_train = []
 x_test = []
 y_test = []
+
+#############################################################################
+# Normalization (COMMENT IT IF WANT TO CHECK RESULTS WITH NO NORMALIZATION) #
+#############################################################################
+X_green = normalize(X_green, axis=0, norm='max')
 
 ###################################
 # Classification and ROC Analysis #

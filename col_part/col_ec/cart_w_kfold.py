@@ -31,9 +31,9 @@ print (len(hinselmann_featureNames))
 print ('nr_features schiller:')
 print (len(schiller_featureNames))
 
-X_green = green_data.iloc[:,:68]
-X_hinselmann = hinselmann_data.iloc[:,:68]
-X_schiller = schiller_data.iloc[:,:68]
+X_green = green_data.iloc[:,:62]
+X_hinselmann = hinselmann_data.iloc[:,:62]
+X_schiller = schiller_data.iloc[:,:62]
 
 X_green = np.asarray(X_green)
 X_hinselmann = np.asarray(X_hinselmann)
