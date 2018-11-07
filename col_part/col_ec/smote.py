@@ -89,7 +89,7 @@ X = np.asarray(X)
 
 Y = green_data['consensus']
 
-x_train, x_test, y_train, y_test = train_test_split(X_subsample, Y_subsample, train_size=0.7, stratify=Y_subsample)
+x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.7, stratify=Y)
 
 green_data['consensus'].value_counts().plot(kind='bar')
 

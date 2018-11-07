@@ -83,9 +83,11 @@ for train_index, test_index in kf.split(X_green, Y_green):
     # n_classes_nb = y_test_bin_nb.shape[1]
 
     probas_ = clf.fit(x_train, y_train).predict_log_proba(x_test)
+
+    print (probas_)
     # probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
     # Compute ROC curve and area the curve
-    fpr, tpr, thresholds = roc_curve(y_test_bin, probas_[:, 1])
+    fpr, tpr, thresholds = roc_curve(y_test_bin, probas_[:, 0])
     tprs.append(interp(mean_fpr, fpr, tpr))
     tprs[-1][0] = 0.0
     roc_auc = auc(fpr, tpr)

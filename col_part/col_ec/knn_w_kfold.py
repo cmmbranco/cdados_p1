@@ -10,7 +10,7 @@ from sklearn.preprocessing import label_binarize
 from sklearn.neighbors.classification import KNeighborsClassifier
 
 n_fold = 10
-k = 57
+k = 3
 
 ##########################
 # Data IO and generation #
@@ -70,12 +70,14 @@ for train_index, test_index in kf.split(X_green, Y_green):
 
     # Binarize the output
     y_test_bin = label_binarize(y_test, green_labels)
+    print(y_test_bin)
     # n_classes_nb = y_test_bin_nb.shape[1]
 
 
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
+    print (probas_)
     # Compute ROC curve and area the curve
-    fpr, tpr, thresholds = roc_curve(y_test_bin, probas_[:, 1])
+    fpr, tpr, thresholds = roc_curve(y_test_bin, probas_[:, 0])
     tprs.append(interp(mean_fpr, fpr, tpr))
     tprs[-1][0] = 0.0
     roc_auc = auc(fpr, tpr)

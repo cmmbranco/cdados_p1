@@ -88,7 +88,9 @@ for train_index, test_index in kf.split(X_green, Y_green):
 
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
 
-    fpr, tpr, thresholds = roc_curve(y_test_bin, probas_[:, 1])
+    print (probas_)
+
+    fpr, tpr, thresholds = roc_curve(y_test_bin, probas_[:, 0])
     tprs.append(interp(mean_fpr, fpr, tpr))
     tprs[-1][0] = 0.0
     roc_auc = auc(fpr, tpr)
