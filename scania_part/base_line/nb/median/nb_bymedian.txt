@@ -1,0 +1,130 @@
+viewing naive bayes fold 0
+[[5718  182]
+ [  12   88]]
+Performances for Naive Bayes at fold 0 where
+[[5718  182]
+ [  12   88]]
+number of predictions was 6000
+accuracy was 96.76666666666667
+specificity rate was 0.9691525423728814
+sensivity rate was 0.88
+
+
+96.76666666666667
+viewing naive bayes fold 1
+[[5714  186]
+ [  15   85]]
+Performances for Naive Bayes at fold 1 where
+[[5714  186]
+ [  15   85]]
+number of predictions was 6000
+accuracy was 96.65
+specificity rate was 0.9684745762711865
+sensivity rate was 0.85
+
+
+96.65
+viewing naive bayes fold 2
+[[5738  162]
+ [  18   82]]
+Performances for Naive Bayes at fold 2 where
+[[5738  162]
+ [  18   82]]
+number of predictions was 6000
+accuracy was 97.0
+specificity rate was 0.9725423728813559
+sensivity rate was 0.82
+
+
+97.0
+viewing naive bayes fold 3
+[[5712  188]
+ [  12   88]]
+Performances for Naive Bayes at fold 3 where
+[[5712  188]
+ [  12   88]]
+number of predictions was 6000
+accuracy was 96.66666666666667
+specificity rate was 0.9681355932203389
+sensivity rate was 0.88
+
+
+96.66666666666667
+viewing naive bayes fold 4
+[[5682  218]
+ [  13   87]]
+Performances for Naive Bayes at fold 4 where
+[[5682  218]
+ [  13   87]]
+number of predictions was 6000
+accuracy was 96.15
+specificity rate was 0.9630508474576271
+sensivity rate was 0.87
+
+
+96.15
+viewing naive bayes fold 5
+[[5726  174]
+ [  16   84]]
+Performances for Naive Bayes at fold 5 where
+[[5726  174]
+ [  16   84]]
+number of predictions was 6000
+accuracy was 96.83333333333334
+specificity rate was 0.9705084745762712
+sensivity rate was 0.84
+
+
+96.83333333333334
+viewing naive bayes fold 6
+[[5727  173]
+ [  15   85]]
+Performances for Naive Bayes at fold 6 where
+[[5727  173]
+ [  15   85]]
+number of predictions was 6000
+accuracy was 96.86666666666667
+specificity rate was 0.9706779661016949
+sensivity rate was 0.85
+
+
+96.86666666666667
+viewing naive bayes fold 7
+[[5730  170]
+ [   6   94]]
+Performances for Naive Bayes at fold 7 where
+[[5730  170]
+ [   6   94]]
+number of predictions was 6000
+accuracy was 97.06666666666666
+specificity rate was 0.9711864406779661
+sensivity rate was 0.94
+
+
+97.06666666666666
+viewing naive bayes fold 8
+[[5710  190]
+ [   8   92]]
+Performances for Naive Bayes at fold 8 where
+[[5710  190]
+ [   8   92]]
+number of predictions was 6000
+accuracy was 96.7
+specificity rate was 0.9677966101694915
+sensivity rate was 0.92
+
+
+96.7
+viewing naive bayes fold 9
+[[5718  182]
+ [  15   85]]
+Performances for Naive Bayes at fold 9 where
+[[5718  182]
+ [  15   85]]
+number of predictions was 6000
+accuracy was 96.71666666666667
+specificity rate was 0.9691525423728814
+sensivity rate was 0.85
+
+
+96.71666666666667

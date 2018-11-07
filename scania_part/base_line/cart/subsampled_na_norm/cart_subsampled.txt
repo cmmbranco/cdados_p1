@@ -1,0 +1,130 @@
+viewing fold 0
+[[91  9]
+ [ 5 95]]
+Performances for CART at fold 0 where
+[[91  9]
+ [ 5 95]]
+number of predictions was 200
+accuracy was 93.0
+specificity rate was 0.91
+sensivity rate was 0.95
+
+
+93.0
+viewing fold 1
+[[88 12]
+ [ 6 94]]
+Performances for CART at fold 1 where
+[[88 12]
+ [ 6 94]]
+number of predictions was 200
+accuracy was 91.0
+specificity rate was 0.88
+sensivity rate was 0.94
+
+
+91.0
+viewing fold 2
+[[91  9]
+ [ 9 91]]
+Performances for CART at fold 2 where
+[[91  9]
+ [ 9 91]]
+number of predictions was 200
+accuracy was 91.0
+specificity rate was 0.91
+sensivity rate was 0.91
+
+
+91.0
+viewing fold 3
+[[94  6]
+ [ 2 98]]
+Performances for CART at fold 3 where
+[[94  6]
+ [ 2 98]]
+number of predictions was 200
+accuracy was 96.0
+specificity rate was 0.94
+sensivity rate was 0.98
+
+
+96.0
+viewing fold 4
+[[92  8]
+ [ 6 94]]
+Performances for CART at fold 4 where
+[[92  8]
+ [ 6 94]]
+number of predictions was 200
+accuracy was 93.0
+specificity rate was 0.92
+sensivity rate was 0.94
+
+
+93.0
+viewing fold 5
+[[92  8]
+ [ 9 91]]
+Performances for CART at fold 5 where
+[[92  8]
+ [ 9 91]]
+number of predictions was 200
+accuracy was 91.5
+specificity rate was 0.92
+sensivity rate was 0.91
+
+
+91.5
+viewing fold 6
+[[90 10]
+ [15 85]]
+Performances for CART at fold 6 where
+[[90 10]
+ [15 85]]
+number of predictions was 200
+accuracy was 87.5
+specificity rate was 0.9
+sensivity rate was 0.85
+
+
+87.5
+viewing fold 7
+[[94  6]
+ [ 7 93]]
+Performances for CART at fold 7 where
+[[94  6]
+ [ 7 93]]
+number of predictions was 200
+accuracy was 93.5
+specificity rate was 0.94
+sensivity rate was 0.93
+
+
+93.5
+viewing fold 8
+[[90 10]
+ [ 8 92]]
+Performances for CART at fold 8 where
+[[90 10]
+ [ 8 92]]
+number of predictions was 200
+accuracy was 91.0
+specificity rate was 0.9
+sensivity rate was 0.92
+
+
+91.0
+viewing fold 9
+[[91  9]
+ [10 90]]
+Performances for CART at fold 9 where
+[[91  9]
+ [10 90]]
+number of predictions was 200
+accuracy was 90.5
+specificity rate was 0.91
+sensivity rate was 0.9
+
+
+90.5

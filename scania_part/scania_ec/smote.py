@@ -9,9 +9,10 @@ from matplotlib.pyplot import plot
 import random
 
 
-def sampler(dataframe):
+def resampler(dataframe):
     
     atribs = dataframe.columns.values
+    
     
     
     posLines = []
@@ -49,7 +50,9 @@ def sampler(dataframe):
     
     random.shuffle(finaldata)
     
+    
     newframe = pd.DataFrame(data=finaldata,columns=atribs)
+    
     
     return newframe
         
@@ -62,75 +65,70 @@ def sampler(dataframe):
 #    for value in values:
         
 
-def plot_2d_space(X, y, label='Classes'):
-    plt.figure()
-    colors = ['#1F77B4', '#FF7F0E']
-    markers = ['o', 's']
-    for l, c, m in zip(np.unique(y), colors, markers):
-        plt.scatter(
-            X[y==l, 0],
-            X[y==l, 1],
-            c=c, label=l, marker=m
-        )
-    plt.title(label)
-    plt.legend(loc='upper right')
+# def plot_2d_space(X, y, label='Classes'):
+#     plt.figure()
+#     colors = ['#1F77B4', '#FF7F0E']
+#     markers = ['o', 's']
+#     for l, c, m in zip(np.unique(y), colors, markers):
+#         plt.scatter(
+#             X[y==l, 0],
+#             X[y==l, 1],
+#             c=c, label=l, marker=m
+#         )
+#     plt.title(label)
+#     plt.legend(loc='upper right')
     
 
+#from sklearn.utils import resample
+data = pd.read_pickle('../../scania_pickles/train/scania_train_smoted_split_na_normalized.pkl')
+#subsampled_data = sampler(data)
+print(data)
 
-data = pd.read_csv("../scania_dataset/aps_failure_training_set.csv")
-subsampled_data = sampler(data)
-
-data = data.replace({'na': '-1'}, regex=True)
-
-X=data.iloc[:,1:]
-X = np.asarray(X)
-
-Y=data['class']
-
-x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.7, stratify=Y)
-
-
-data['class'].value_counts().plot(kind='bar')
-
-
-clf = KNeighborsClassifier(n_neighbors=3)
-clf.fit(x_train,y_train)
-results = clf.predict(x_test)
-
-acc = accuracy_score(y_test,results)
-
-print(f"unsmoted acc was {acc}")
-
-plot_2d_space(x_train, y_train, 'unsmoted sample')
-
-smote = smt(ratio='minority')
-X_train_smoted, Y_train_smoted = smote.fit_sample(x_train, y_train)
-
-x_train = X_train_smoted
-y_train = Y_train_smoted
-
-
-clf = KNeighborsClassifier(n_neighbors=3)
-clf.fit(x_train,y_train)
-results = clf.predict(x_test)
-
-acc = accuracy_score(y_test,results)
-
-print(f"smoted acc was {acc}")
-
-plot_2d_space(X_train_smoted, Y_train_smoted, 'SMOTE over-sampling')
+#atribs = []
 
 
 
-#resampling
 
-from sklearn.utils import resample
-x_train_res, y_train_res = resample(x_train, y_train)
-
-plot_2d_space(x_train_res, y_train_res, 'Resample')
+#x_train = data.iloc[:,1:]
+#y_train = data['class']
 
 
+#for atrib in x_train:
+#    atribs.append(atrib)
 
-plt.show()
+#a.to_pickle('../../scania_pickles/scania_train_subsampled_split_na_normalized.pkl')
+
+
+#x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.7, stratify=Y)
+
+
+#data['class'].value_counts().plot(kind='bar')
+
+
+
+#plot_2d_space(x_train, y_train, 'unsmoted sample')
+
+#smote = smt(ratio='minority')
+
+#print(smote)
+#X_train_smoted, Y_train_smoted = smote.fit_sample(x_train, y_train)
+
+#y = pd.DataFrame({'class' : Y_train_smoted})
+
+#returnFrame = pd.DataFrame(columns=atribs, data=X_train_smoted)
+
+#a = y.join(returnFrame)
+
+#print(a)
+
+#a.to_pickle('../../scania_pickles/train/scania_train_smoted_split_na_normalized.pkl')
+
+#a['class'].value_counts().plot(kind='bar')
+
+#plot_2d_space(X_train_smoted, Y_train_smoted, 'SMOTE over-sampling')
+
+#plot_2d_space(x_train_res, y_train_res, 'Resample')
+
+#plt.show()
     
     

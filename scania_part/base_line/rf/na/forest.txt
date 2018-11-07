@@ -1,0 +1,130 @@
+viewing fold 0
+[[5896    4]
+ [  33   67]]
+Performances for 100 Random Forests at fold 0 where
+[[5896    4]
+ [  33   67]]
+number of predictions was 6000
+accuracy was 99.38333333333334
+specificity rate was 0.9993220338983051
+sensivity rate was 0.67
+
+
+99.38333333333334
+viewing fold 1
+[[5890   10]
+ [  24   76]]
+Performances for 100 Random Forests at fold 1 where
+[[5890   10]
+ [  24   76]]
+number of predictions was 6000
+accuracy was 99.43333333333332
+specificity rate was 0.9983050847457627
+sensivity rate was 0.76
+
+
+99.43333333333332
+viewing fold 2
+[[5896    4]
+ [  33   67]]
+Performances for 100 Random Forests at fold 2 where
+[[5896    4]
+ [  33   67]]
+number of predictions was 6000
+accuracy was 99.38333333333334
+specificity rate was 0.9993220338983051
+sensivity rate was 0.67
+
+
+99.38333333333334
+viewing fold 3
+[[5891    9]
+ [  38   62]]
+Performances for 100 Random Forests at fold 3 where
+[[5891    9]
+ [  38   62]]
+number of predictions was 6000
+accuracy was 99.21666666666667
+specificity rate was 0.9984745762711864
+sensivity rate was 0.62
+
+
+99.21666666666667
+viewing fold 4
+[[5893    7]
+ [  27   73]]
+Performances for 100 Random Forests at fold 4 where
+[[5893    7]
+ [  27   73]]
+number of predictions was 6000
+accuracy was 99.43333333333332
+specificity rate was 0.9988135593220339
+sensivity rate was 0.73
+
+
+99.43333333333332
+viewing fold 5
+[[5892    8]
+ [  35   65]]
+Performances for 100 Random Forests at fold 5 where
+[[5892    8]
+ [  35   65]]
+number of predictions was 6000
+accuracy was 99.28333333333333
+specificity rate was 0.9986440677966102
+sensivity rate was 0.65
+
+
+99.28333333333333
+viewing fold 6
+[[5891    9]
+ [  33   67]]
+Performances for 100 Random Forests at fold 6 where
+[[5891    9]
+ [  33   67]]
+number of predictions was 6000
+accuracy was 99.3
+specificity rate was 0.9984745762711864
+sensivity rate was 0.67
+
+
+99.3
+viewing fold 7
+[[5892    8]
+ [  23   77]]
+Performances for 100 Random Forests at fold 7 where
+[[5892    8]
+ [  23   77]]
+number of predictions was 6000
+accuracy was 99.48333333333333
+specificity rate was 0.9986440677966102
+sensivity rate was 0.77
+
+
+99.48333333333333
+viewing fold 8
+[[5894    6]
+ [  35   65]]
+Performances for 100 Random Forests at fold 8 where
+[[5894    6]
+ [  35   65]]
+number of predictions was 6000
+accuracy was 99.31666666666666
+specificity rate was 0.9989830508474576
+sensivity rate was 0.65
+
+
+99.31666666666666
+viewing fold 9
+[[5894    6]
+ [  31   69]]
+Performances for 100 Random Forests at fold 9 where
+[[5894    6]
+ [  31   69]]
+number of predictions was 6000
+accuracy was 99.38333333333334
+specificity rate was 0.9989830508474576
+sensivity rate was 0.69
+
+
+99.38333333333334

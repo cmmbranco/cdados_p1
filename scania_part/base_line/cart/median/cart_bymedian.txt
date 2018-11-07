@@ -1,0 +1,130 @@
+viewing fold 0
+[[5859   41]
+ [  36   64]]
+Performances for CART at fold 0 where
+[[5859   41]
+ [  36   64]]
+number of predictions was 6000
+accuracy was 98.71666666666667
+specificity rate was 0.9930508474576272
+sensivity rate was 0.64
+
+
+98.71666666666667
+viewing fold 1
+[[5859   41]
+ [  23   77]]
+Performances for CART at fold 1 where
+[[5859   41]
+ [  23   77]]
+number of predictions was 6000
+accuracy was 98.93333333333332
+specificity rate was 0.9930508474576272
+sensivity rate was 0.77
+
+
+98.93333333333332
+viewing fold 2
+[[5875   25]
+ [  28   72]]
+Performances for CART at fold 2 where
+[[5875   25]
+ [  28   72]]
+number of predictions was 6000
+accuracy was 99.11666666666666
+specificity rate was 0.9957627118644068
+sensivity rate was 0.72
+
+
+99.11666666666666
+viewing fold 3
+[[5867   33]
+ [  26   74]]
+Performances for CART at fold 3 where
+[[5867   33]
+ [  26   74]]
+number of predictions was 6000
+accuracy was 99.01666666666667
+specificity rate was 0.994406779661017
+sensivity rate was 0.74
+
+
+99.01666666666667
+viewing fold 4
+[[5864   36]
+ [  29   71]]
+Performances for CART at fold 4 where
+[[5864   36]
+ [  29   71]]
+number of predictions was 6000
+accuracy was 98.91666666666666
+specificity rate was 0.9938983050847457
+sensivity rate was 0.71
+
+
+98.91666666666666
+viewing fold 5
+[[5870   30]
+ [  36   64]]
+Performances for CART at fold 5 where
+[[5870   30]
+ [  36   64]]
+number of predictions was 6000
+accuracy was 98.9
+specificity rate was 0.9949152542372881
+sensivity rate was 0.64
+
+
+98.9
+viewing fold 6
+[[5875   25]
+ [  25   75]]
+Performances for CART at fold 6 where
+[[5875   25]
+ [  25   75]]
+number of predictions was 6000
+accuracy was 99.16666666666667
+specificity rate was 0.9957627118644068
+sensivity rate was 0.75
+
+
+99.16666666666667
+viewing fold 7
+[[5867   33]
+ [  29   71]]
+Performances for CART at fold 7 where
+[[5867   33]
+ [  29   71]]
+number of predictions was 6000
+accuracy was 98.96666666666667
+specificity rate was 0.994406779661017
+sensivity rate was 0.71
+
+
+98.96666666666667
+viewing fold 8
+[[5862   38]
+ [  30   70]]
+Performances for CART at fold 8 where
+[[5862   38]
+ [  30   70]]
+number of predictions was 6000
+accuracy was 98.86666666666667
+specificity rate was 0.9935593220338983
+sensivity rate was 0.7
+
+
+98.86666666666667
+viewing fold 9
+[[5872   28]
+ [  29   71]]
+Performances for CART at fold 9 where
+[[5872   28]
+ [  29   71]]
+number of predictions was 6000
+accuracy was 99.05000000000001
+specificity rate was 0.9952542372881356
+sensivity rate was 0.71
+
+
+99.05000000000001

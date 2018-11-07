@@ -1,0 +1,130 @@
+viewing fold 0
+[[94  6]
+ [ 2 98]]
+Performances for 100 Random Forests at fold 0 where
+[[94  6]
+ [ 2 98]]
+number of predictions was 200
+accuracy was 96.0
+specificity rate was 0.94
+sensivity rate was 0.98
+
+
+96.0
+viewing fold 1
+[[93  7]
+ [ 1 99]]
+Performances for 100 Random Forests at fold 1 where
+[[93  7]
+ [ 1 99]]
+number of predictions was 200
+accuracy was 96.0
+specificity rate was 0.93
+sensivity rate was 0.99
+
+
+96.0
+viewing fold 2
+[[91  9]
+ [ 3 97]]
+Performances for 100 Random Forests at fold 2 where
+[[91  9]
+ [ 3 97]]
+number of predictions was 200
+accuracy was 94.0
+specificity rate was 0.91
+sensivity rate was 0.97
+
+
+94.0
+viewing fold 3
+[[95  5]
+ [ 5 95]]
+Performances for 100 Random Forests at fold 3 where
+[[95  5]
+ [ 5 95]]
+number of predictions was 200
+accuracy was 95.0
+specificity rate was 0.95
+sensivity rate was 0.95
+
+
+95.0
+viewing fold 4
+[[94  6]
+ [ 5 95]]
+Performances for 100 Random Forests at fold 4 where
+[[94  6]
+ [ 5 95]]
+number of predictions was 200
+accuracy was 94.5
+specificity rate was 0.94
+sensivity rate was 0.95
+
+
+94.5
+viewing fold 5
+[[95  5]
+ [ 1 99]]
+Performances for 100 Random Forests at fold 5 where
+[[95  5]
+ [ 1 99]]
+number of predictions was 200
+accuracy was 97.0
+specificity rate was 0.95
+sensivity rate was 0.99
+
+
+97.0
+viewing fold 6
+[[93  7]
+ [10 90]]
+Performances for 100 Random Forests at fold 6 where
+[[93  7]
+ [10 90]]
+number of predictions was 200
+accuracy was 91.5
+specificity rate was 0.93
+sensivity rate was 0.9
+
+
+91.5
+viewing fold 7
+[[ 96   4]
+ [  0 100]]
+Performances for 100 Random Forests at fold 7 where
+[[ 96   4]
+ [  0 100]]
+number of predictions was 200
+accuracy was 98.0
+specificity rate was 0.96
+sensivity rate was 1.0
+
+
+98.0
+viewing fold 8
+[[94  6]
+ [ 2 98]]
+Performances for 100 Random Forests at fold 8 where
+[[94  6]
+ [ 2 98]]
+number of predictions was 200
+accuracy was 96.0
+specificity rate was 0.94
+sensivity rate was 0.98
+
+
+96.0
+viewing fold 9
+[[95  5]
+ [ 1 99]]
+Performances for 100 Random Forests at fold 9 where
+[[95  5]
+ [ 1 99]]
+number of predictions was 200
+accuracy was 97.0
+specificity rate was 0.95
+sensivity rate was 0.99
+
+
+97.0

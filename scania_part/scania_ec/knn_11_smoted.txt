@@ -1,0 +1,110 @@
+TRAIN: [  6007   6009   6010 ... 117997 117998 117999] TEST: [    0     1     2 ... 64897 64898 64899]
+Performances for Naive Bayes at fold 0 where
+[[5729  171]
+ [   6 5894]]
+number of predictions was 11800
+accuracy was 98.5
+specificity rate was 0.9710169491525423
+sensivity rate was 0.9989830508474576
+
+
+98.5
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [ 6007  6009  6010 ... 70797 70798 70799]
+Performances for Naive Bayes at fold 1 where
+[[5733  167]
+ [   2 5898]]
+number of predictions was 11800
+accuracy was 98.5677966101695
+specificity rate was 0.9716949152542372
+sensivity rate was 0.9996610169491525
+
+
+98.5677966101695
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [12028 12029 12030 ... 76697 76698 76699]
+Performances for Naive Bayes at fold 2 where
+[[5738  162]
+ [   4 5896]]
+number of predictions was 11800
+accuracy was 98.59322033898306
+specificity rate was 0.9725423728813559
+sensivity rate was 0.9993220338983051
+
+
+98.59322033898306
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [18035 18036 18037 ... 82597 82598 82599]
+Performances for Naive Bayes at fold 3 where
+[[5736  164]
+ [   2 5898]]
+number of predictions was 11800
+accuracy was 98.59322033898306
+specificity rate was 0.9722033898305085
+sensivity rate was 0.9996610169491525
+
+
+98.59322033898306
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [24044 24045 24046 ... 88497 88498 88499]
+Performances for Naive Bayes at fold 4 where
+[[5713  187]
+ [   3 5897]]
+number of predictions was 11800
+accuracy was 98.38983050847457
+specificity rate was 0.9683050847457627
+sensivity rate was 0.9994915254237288
+
+
+98.38983050847457
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [30039 30040 30041 ... 94397 94398 94399]
+Performances for Naive Bayes at fold 5 where
+[[5756  144]
+ [   4 5896]]
+number of predictions was 11800
+accuracy was 98.7457627118644
+specificity rate was 0.9755932203389831
+sensivity rate was 0.9993220338983051
+
+
+98.7457627118644
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [ 36040  36041  36042 ... 100297 100298 100299]
+Performances for Naive Bayes at fold 6 where
+[[5751  149]
+ [   5 5895]]
+number of predictions was 11800
+accuracy was 98.69491525423729
+specificity rate was 0.9747457627118644
+sensivity rate was 0.9991525423728813
+
+
+98.69491525423729
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [ 42032  42033  42034 ... 106197 106198 106199]
+Performances for Naive Bayes at fold 7 where
+[[5745  155]
+ [   5 5895]]
+number of predictions was 11800
+accuracy was 98.64406779661017
+specificity rate was 0.9737288135593221
+sensivity rate was 0.9991525423728813
+
+
+98.64406779661017
+TRAIN: [     0      1      2 ... 117997 117998 117999] TEST: [ 48021  48022  48023 ... 112097 112098 112099]
+Performances for Naive Bayes at fold 8 where
+[[5735  165]
+ [   8 5892]]
+number of predictions was 11800
+accuracy was 98.53389830508475
+specificity rate was 0.9720338983050848
+sensivity rate was 0.9986440677966102
+
+
+98.53389830508475
+TRAIN: [     0      1      2 ... 112097 112098 112099] TEST: [ 54015  54016  54017 ... 117997 117998 117999]
+Performances for Naive Bayes at fold 9 where
+[[5735  165]
+ [   0 5900]]
+number of predictions was 11800
+accuracy was 98.60169491525423
+specificity rate was 0.9720338983050848
+sensivity rate was 1.0
+
+
+98.60169491525423

@@ -4,7 +4,7 @@ from sklearn.model_selection import StratifiedKFold
 import numpy as np
 from scipy import interp
 import matplotlib.pyplot as plt
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, confusion_matrix
 from sklearn.preprocessing import label_binarize
 
 
@@ -17,8 +17,10 @@ n_fold = 10
 
 # Import some data to play with
 
-data = pd.read_csv("../scania_dataset/aps_failure_training_set.csv")
-data = data.replace({'na': '-1'}, regex=True)
+# data = pd.read_csv("../scania_dataset/aps_failure_training_set.csv")
+# data = data.replace({'na': '-1'}, regex=True)
+
+data = pd.read_pickle('../../scania_pickles/train/scania_train_smoted_split_na_normalized.pkl')
         
 X=data.iloc[:,1:]
 X = np.asarray(X)
@@ -54,9 +56,10 @@ aucs = []
 mean_fpr = np.linspace(0, 1, 100)
 
 i = 0
-
+fold = 0
 for train_index, test_index in kf.split(X,Y):
-    print("TRAIN:", train_index, "TEST:", test_index)
+    print(f"viewing naive bayes fold {fold}")
+    #print("TRAIN:", train_index, "TEST:", test_index)
     x_train, x_test = X[train_index], X[test_index]
     y_train, y_test = Y[train_index], Y[test_index]
     
@@ -77,6 +80,34 @@ for train_index, test_index in kf.split(X,Y):
 
     i += 1
     
+    reses = clf.predict(x_test)
+    
+    confusion = confusion_matrix(y_test, reses, labels)
+
+    print(confusion)
+    
+    trueNeg = confusion[0][0]   
+    truePos = confusion[1][1]  
+        
+    falseNeg = confusion[1][0]  
+    falsePos = confusion[0][1]  
+             
+    total = trueNeg + truePos + falseNeg + falsePos
+    acc = ((truePos+trueNeg)/total) * 100.0
+    specificity = trueNeg / (trueNeg + falsePos)
+    sensivity = truePos / (truePos + falseNeg)
+    
+    print(f"Performances for Naive Bayes at fold {fold} where")
+    print(confusion)
+    print(f'number of predictions was {total}')
+    print(f'accuracy was {acc}')
+    print(f'specificity rate was {specificity}')
+    print(f'sensivity rate was {sensivity}')
+    print("\n")
+    #acc = accuracy_score(y_test, reses)
+    print(acc)
+    
+    fold += 1
     
 plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r',
          label='Random', alpha=.8)

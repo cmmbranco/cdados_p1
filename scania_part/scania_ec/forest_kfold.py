@@ -3,7 +3,7 @@ import numpy as np
 from scipy import interp
 import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, confusion_matrix
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import label_binarize
 
@@ -12,15 +12,16 @@ from sklearn.neighbors.classification import KNeighborsClassifier
 
 
 n_fold = 10
-k = 53
+#k = 53
 
 # #############################################################################
 # Data IO and generation
 
 # Import some data to play with
 
-data = pd.read_csv("../scania_dataset/aps_failure_training_set.csv")
-data = data.replace({'na': '-1'}, regex=True)
+# data = pd.read_csv("../scania_dataset/aps_failure_training_set.csv")
+# data = data.replace({'na': '-1'}, regex=True)
+data = pd.read_pickle('../../scania_pickles/train/scania_train_smoted_split_na_normalized.pkl')
         
 X=data.iloc[:,1:]
 X = np.asarray(X)
@@ -48,16 +49,17 @@ y_test = []
 
 # Run classifier with cross-validation and plot ROC curves
 cv = StratifiedKFold(n_splits=n_fold)
-clf = RandomForestClassifier()
+clf = RandomForestClassifier(n_estimators=100)
 
 tprs = []
 aucs = []
 mean_fpr = np.linspace(0, 1, 100)
 
 i = 0
-
+fold = 0
 for train_index, test_index in kf.split(X,Y):
-    print("TRAIN:", train_index, "TEST:", test_index)
+    print(f"viewing fold {fold}")
+    #print("TRAIN:", train_index, "TEST:", test_index)
     x_train, x_test = X[train_index], X[test_index]
     y_train, y_test = Y[train_index], Y[test_index]
     
@@ -77,6 +79,35 @@ for train_index, test_index in kf.split(X,Y):
              label='ROC fold %d (AUC = %0.2f)' % (i, roc_auc))
 
     i += 1
+    
+    reses = clf.predict(x_test)
+    
+    confusion = confusion_matrix(y_test, reses, labels)
+
+    print(confusion)
+    
+    trueNeg = confusion[0][0]   
+    truePos = confusion[1][1]  
+        
+    falseNeg = confusion[1][0]  
+    falsePos = confusion[0][1]  
+             
+    total = trueNeg + truePos + falseNeg + falsePos
+    acc = ((truePos+trueNeg)/total) * 100.0
+    specificity = trueNeg / (trueNeg + falsePos)
+    sensivity = truePos / (truePos + falseNeg)
+    
+    print(f"Performances for 100 Random Forests at fold {fold} where")
+    print(confusion)
+    print(f'number of predictions was {total}')
+    print(f'accuracy was {acc}')
+    print(f'specificity rate was {specificity}')
+    print(f'sensivity rate was {sensivity}')
+    print("\n")
+    #acc = accuracy_score(y_test, reses)
+    print(acc)
+    
+    fold += 1
     
     
 plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r',
@@ -100,6 +131,6 @@ plt.xlim([-0.05, 1.05])
 plt.ylim([-0.05, 1.05])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title(f'ROC Chart for Random Forest and {n_fold} folds')
+plt.title(f'ROC Chart for 100 Random Forests and {n_fold} folds')
 plt.legend(loc="lower right")
 plt.show()

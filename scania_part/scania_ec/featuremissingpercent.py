@@ -34,11 +34,13 @@ for column in data:
 for word in dic:
     dic[word] = (dic[word]/nrows)*100.0
 
+n_feat = 0
 for x in dic:
-    if dic[x] >= 60:
+    if dic[x] >= 10:
         print(f"{x} with {dic[x]}% missing")
+        n_feat += 1
         
-
+print(n_feat)
 
 
 
