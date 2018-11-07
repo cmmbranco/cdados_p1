@@ -1,5 +1,12 @@
 ## STATS FOR COL DATASET ##
 
+###########################################################################################
+# WORKING ON:                                                                             #
+#         NORMALIZATION OF DATA AND THINKING ABOUT REMOVAL OF HIGH % of attributes with 0 #
+###########################################################################################
+
+
+-----------------------------------------------------------
 Number of Rows
 {'green': 98, 'hinselmann': 97, 'schiller': 92}
 
