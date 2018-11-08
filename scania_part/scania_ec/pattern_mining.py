@@ -210,6 +210,7 @@ print('\n')
 print('associating')
 rules = association_rules(apri, metric="confidence", min_threshold=0.9)
 print(rules)
+
 # 
 # 
 #     
