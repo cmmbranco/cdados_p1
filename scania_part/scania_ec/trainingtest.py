@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.metrics import roc_curve, auc, confusion_matrix
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import label_binarize
-
+from sklearn.feature_selection import chi2
 from sklearn.neighbors.classification import KNeighborsClassifier
 from sklearn.model_selection._split import train_test_split
 
@@ -23,18 +23,66 @@ train = pd.read_pickle('../../scania_pickles/train/scania_train_subsampled_split
 
 test = pd.read_pickle('../../scania_pickles/test/scania_test_split_na_normalized.pkl')
 
+
 x_train = train.iloc[:,1:]
 y_train = train['class']
-x_train = np.asarray(x_train)
+
 
 x_test = test.iloc[:,1:]
-x_test = np.asarray(x_test)
 y_test = test['class']
 
 
-print('bla')
+
 labels = pd.unique(y_test)
 
+chi, pval = chi2(x_train, y_train)
+
+print(pval)
+
+pvals = []
+atrib_todrop = []
+
+
+atribs = x_train.columns.values
+
+
+dic = {}
+
+index = 0
+for val in pval:
+    dic[index] = val
+    index += 1
+    
+
+dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
+    
+print(dic)
+
+i = 0
+
+to_stay = []
+
+for pair in dic:
+    if i == 101: #20 plus the nan 
+        break
+    to_stay.append(pair[0])
+    i+=1
+    
+i=0
+
+for atrib in atribs:
+    if i in to_stay:
+        i += 1
+    else:
+        i += 1
+        atrib_todrop.append(atrib)
+
+
+x_train = x_train.drop(atrib_todrop, axis=1)
+x_train = np.asarray(x_train)
+
+x_test = x_test.drop(atrib_todrop, axis=1)
+x_test = np.asarray(x_test)
 
 #print(data)
 
