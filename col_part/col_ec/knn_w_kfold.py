@@ -53,13 +53,19 @@ y_train = []
 x_test = []
 y_test = []
 
-#############################################################################
-# Normalization (COMMENT IT IF WANT TO CHECK RESULTS WITH NO NORMALIZATION) #
-#############################################################################
-#X_green = normalize(X_green, axis=0, norm='max')
+##################
+# PRE-PROCESSING #
+##################
 
-#########################3#########
-# Classification and ROC Analysis #
+# Normalization (comment it if want to check results with no normalization)
+X_hinselmann = normalize(X_hinselmann, axis=0, norm='max')
+
+# Resampling (comment it if want to check results with no resampling)
+X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
+
+
+###################################
+# CLASSIFICATION AND ROC ANALYSIS #
 ###################################
 clf = KNeighborsClassifier(n_neighbors=k)
 
@@ -70,18 +76,13 @@ mean_fpr = np.linspace(0, 1, 100)
 i = 0
 fold = 0
 
-####################################################################
-# RESAMPLING (COMMENT IT IF WANT TO CHECK RESULTS WITH NO RESAMPLE #
-####################################################################
-#X_green, Y_green = resample(X_green, Y_green)
-
-for train_index, test_index in kf.split(X_schiller, Y_schiller):
+for train_index, test_index in kf.split(X_hinselmann, Y_hinselmann):
     print("TRAIN:", train_index, "TEST:", test_index)
-    x_train, x_test = X_schiller[train_index], X_schiller[test_index]
-    y_train, y_test = Y_schiller[train_index], Y_schiller[test_index]
+    x_train, x_test = X_hinselmann[train_index], X_hinselmann[test_index]
+    y_train, y_test = Y_hinselmann[train_index], Y_hinselmann[test_index]
 
     # Binarize the output
-    y_test_bin = label_binarize(y_test, schiller_labels)
+    y_test_bin = label_binarize(y_test, hinselmann_labels)
     # n_classes_nb = y_test_bin_nb.shape[1]
 
 
@@ -97,7 +98,7 @@ for train_index, test_index in kf.split(X_schiller, Y_schiller):
              label='ROC fold %d (AUC = %0.2f)' % (i, roc_auc))
 
     reses = clf.predict(x_test)
-    confusion = confusion_matrix(y_test, reses, schiller_labels)
+    confusion = confusion_matrix(y_test, reses, hinselmann_labels)
 
     trueNeg = confusion[0][0]
     truePos = confusion[1][1]

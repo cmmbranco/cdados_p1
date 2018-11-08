@@ -63,13 +63,19 @@ y_train = []
 x_test = []
 y_test = []
 
-#############################################################################
-# Normalization (COMMENT IT IF WANT TO CHECK RESULTS WITH NO NORMALIZATION) #
-#############################################################################
-#X_hinselmann = normalize(X_hinselmann, axis=0, norm='max')
+##################
+# PRE-PROCESSING #
+##################
+
+# Normalization (comment it if want to check results with no normalization)
+X_hinselmann = normalize(X_hinselmann, axis=0, norm='max')
+
+# Resampling (comment it if want to check results with no resampling)
+X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
+
 
 ###################################
-# Classification and ROC Analysis #
+# CLASSIFICATION AND ROC ANALYSIS #
 ###################################
 clf = DecisionTreeClassifier()
 
@@ -80,18 +86,13 @@ mean_fpr = np.linspace(0, 1, 100)
 i = 0
 fold = 0
 
-####################################################################
-# RESAMPLING (COMMENT IT IF WANT TO CHECK RESULTS WITH NO RESAMPLE #
-####################################################################
-#X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
-
-for train_index, test_index in kf.split(X_green, Y_green):
+for train_index, test_index in kf.split(X_hinselmann, Y_hinselmann):
     print('TRAIN:', train_index, 'TEST:', test_index)
-    x_train, x_test = X_green[train_index], X_green[test_index]
-    y_train, y_test = Y_green[train_index], Y_green[test_index]
+    x_train, x_test = X_hinselmann[train_index], X_hinselmann[test_index]
+    y_train, y_test = Y_hinselmann[train_index], Y_hinselmann[test_index]
 
     #Binarize the output
-    y_test_bin = label_binarize(y_test, green_labels)
+    y_test_bin = label_binarize(y_test, hinselmann_labels)
 
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
 
@@ -105,7 +106,7 @@ for train_index, test_index in kf.split(X_green, Y_green):
              label='ROC fold %d (AUC = %0.2f)' % (i, roc_auc))
 
     reses = clf.predict(x_test)
-    confusion = confusion_matrix(y_test, reses, green_labels)
+    confusion = confusion_matrix(y_test, reses, hinselmann_labels)
 
     trueNeg = confusion[0][0]
     truePos = confusion[1][1]
@@ -118,7 +119,7 @@ for train_index, test_index in kf.split(X_green, Y_green):
     specificity = trueNeg / (trueNeg + falsePos)
     sensivity = truePos / (truePos + falseNeg)
 
-    print(f"Performances for Naive Bayes at fold {fold} where")
+    print(f"Performances for CART at fold {fold}")
     print(confusion)
     print(f'number of predictions was {total}')
     print(f'accuracy was {acc}')

@@ -5,6 +5,7 @@ from imblearn.over_sampling import SMOTE as smt
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors.classification import KNeighborsClassifier
 from sklearn.metrics.classification import accuracy_score
+from sklearn.metrics.classification import confusion_matrix
 from matplotlib.pyplot import plot
 import random
 
@@ -75,31 +76,38 @@ def plot_2d_space(X, y, label='Classes'):
     plt.legend(loc='upper right')
 
 
-schiller_data = pd.read_csv('../col_dataset/hinselmann.csv')
-subsampled_data = sampler(schiller_data)
-
-print (subsampled_data)
+hinselmann_data = pd.read_csv('../col_dataset/hinselmann.csv')
+subsampled_data = sampler(hinselmann_data)
 
 X_subsample = subsampled_data.iloc[:, :62]
 X_subsample = np.asarray(X_subsample)
 Y_subsample = subsampled_data['consensus']
 
-X = schiller_data.iloc[:, :62]
-X = np.asarray(X)
+X_hinselmann = hinselmann_data.iloc[:, :62]
+X_hinselmann = np.asarray(X_hinselmann)
 
-Y = schiller_data['consensus']
+Y_hinselmann = hinselmann_data['consensus']
 
-x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.7, stratify=Y)
+x_train, x_test, y_train, y_test = train_test_split(X_hinselmann, Y_hinselmann, train_size=0.7, stratify=Y_hinselmann)
 
-schiller_data['consensus'].value_counts().plot(kind='bar')
+hinselmann_data['consensus'].value_counts().plot(kind='bar')
 
 clf = KNeighborsClassifier(n_neighbors=3)
 clf.fit(x_train, y_train)
 results = clf.predict(x_test)
 
+print(y_test)
+print (results)
+
 acc = accuracy_score(y_test, results)
 
 print(f"unsmoted acc was {acc}")
+
+confmat = confusion_matrix(y_test, results)
+sensivity = confmat[0][0]/(confmat[0][0] + confmat[1][0])
+
+print (confmat)
+print (f'sensivity = {sensivity}')
 
 plot_2d_space(x_train, y_train, 'unsmoted sample')
 
@@ -119,6 +127,8 @@ print(f"smoted acc was {acc}")
 
 plot_2d_space(X_train_smoted, Y_train_smoted, 'SMOTE over-sampling')
 
+print (len(X_train_smoted)+len(Y_train_smoted))
+
 # resampling
 
 from sklearn.utils import resample
@@ -133,5 +143,7 @@ acc = accuracy_score(y_test, results)
 print (f'resampled acc was {acc}')
 
 plot_2d_space(x_train_res, y_train_res, 'Resample')
+
+print (len(x_train_res)+len(y_train_res))
 
 plt.show()
