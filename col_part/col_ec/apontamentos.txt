@@ -10,6 +10,9 @@
 Number of Rows
 {'green': 98, 'hinselmann': 97, 'schiller': 92}
 
+
+KNN:
+3; 5; 11; 21
 CONFIRMED. NO MISSING VALUES
 ----------------------------------------------------------------------
 
