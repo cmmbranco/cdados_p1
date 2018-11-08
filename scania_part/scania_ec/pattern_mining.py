@@ -6,6 +6,7 @@ import numpy as np
 from mlxtend.frequent_patterns import apriori, association_rules
 from pymining import seqmining
 from prefixspan import PrefixSpan
+from sklearn.feature_selection import chi2
 
 def columnisbinary(column):
     
@@ -88,11 +89,28 @@ def widthnumericpreprocess(df, bins):
                                     columns=[(atrib + "_" + str(i)) for i in numbs])
             # In side by side concatenation index values should be same
             # Setting the index values similar to the data frame
-            
-            temp = temp.set_index(df.index.values)
+            elif df[atrib].nunique() == 2:
+                vals = df[atrib].unique()
+                temp = df[atrib]
+                
+                
+                
+                pair = f"old: {vals[0]} new 0, old: {vals[1]} new 1"
+                bin_map[atrib] = pair
+                
+                temp = temp.map({vals[0]: 0, vals[1]: 1})
+                
+                
+            else:
+                print('debug \n')
+                return
+            #temp = temp.set_index(df.index.values)
             # adding the new One Hot Encoded varibales to the dataframe
+            #print(pdf)
+            
             pdf = pd.concat([pdf, temp], axis=1)
                 
+            #print(pdf)
             
         #column is not binary and cannot be discritized by formula
         else:
@@ -119,8 +137,56 @@ data = pd.read_pickle('../../scania_pickles/train/scania_train_subsampled_split_
 Y = data['class']
 X = data.iloc[:,1:]
 
-data_1, map = widthnumericpreprocess(X, 4)
 
+chi, pval = chi2(X, Y)
+
+print(pval)
+
+pvals = []
+atrib_todrop = []
+
+
+atribs = X.columns.values
+
+
+dic = {}
+
+index = 0
+for val in pval:
+    dic[index] = val
+    index += 1
+    
+
+dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
+    
+print(dic)
+
+i = 0
+
+to_stay = []
+
+for pair in dic:
+    if i == 101: #20 plus the nan 
+        break
+    to_stay.append(pair[0])
+    i+=1
+    
+i=0
+
+for atrib in atribs:
+    if i in to_stay:
+        i += 1
+    else:
+        i += 1
+        atrib_todrop.append(atrib)
+
+X = X.drop(atrib_todrop, axis=1)
+
+print(X)
+
+data_1, map = widthnumericpreprocess(X, 4)
+print('ble')
+print(data_1)
 
 #data = pd.to_pickle('../../scania_pickles/train/scania_train_4bin_subsampled_split_na_normalized.pkl')
 
@@ -133,15 +199,17 @@ data_1, map = widthnumericpreprocess(X, 4)
 # #print(page)
 # 
 print('going apri')
-apri = apriori(data_1, min_support=0.6, use_colnames=True)
+apri = apriori(data_1, min_support=0.7, use_colnames=True)
 print(apri)
 # pageapri = apriori(page, min_support=0.6, use_colnames=True)
 # 
 # print(ionoapri)
 # 
-# 
-# ionorules = association_rules(ionoapri, metric="confidence", min_threshold=0.9)
-# print(ionorules)
+
+print('\n')
+print('associating')
+rules = association_rules(apri, metric="confidence", min_threshold=0.9)
+print(rules)
 # 
 # 
 #     
@@ -166,16 +234,19 @@ print(apri)
 #     line = fp.readline()
 # fp.close()
 
-seqdata = np.asarray(data_1)
-freq_seqs = seqmining.freq_seq_enum(seqdata, 550)
-print("frequent items")
-print(sorted(freq_seqs), '\n')
- 
-print("prefix span")
-ps = PrefixSpan(seqdata)
-print(ps.frequent(500, closed=True),'\n')
- 
- 
-print("topk")
-print(ps.topk(5, closed=True), '\n')
+
+####
+####Sequential mining
+# seqdata = np.asarray(data_1)
+# freq_seqs = seqmining.freq_seq_enum(seqdata, 550)
+# print("frequent items")
+# print(sorted(freq_seqs), '\n')
+#  
+# print("prefix span")
+# ps = PrefixSpan(seqdata)
+# print(ps.frequent(500, closed=True),'\n')
+#  
+#  
+# print("topk")
+# print(ps.topk(5, closed=True), '\n')
 
