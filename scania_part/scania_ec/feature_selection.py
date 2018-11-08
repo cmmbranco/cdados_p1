@@ -82,15 +82,3 @@ print(f'accuracy was {acc}')
 print(f'specificity rate was {specificity}')
 print(f'sensivity rate was {sensivity}')
 print("\n")
-
-
-
-
-
-
-
-
-
-
-
-
