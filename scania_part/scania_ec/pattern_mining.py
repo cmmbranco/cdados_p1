@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 from mlxtend.frequent_patterns import apriori, association_rules
-from pymining import seqmining
+#from pymining import seqmining
 from prefixspan import PrefixSpan
 from sklearn.feature_selection import chi2
 
@@ -140,7 +140,7 @@ X = data.iloc[:,1:]
 
 chi, pval = chi2(X, Y)
 
-print(pval)
+#print(pval)
 
 pvals = []
 atrib_todrop = []
@@ -159,7 +159,7 @@ for val in pval:
 
 dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
     
-print(dic)
+#print(dic)
 
 i = 0
 
@@ -182,34 +182,54 @@ for atrib in atribs:
 
 X = X.drop(atrib_todrop, axis=1)
 
-print(X)
 
 data_1, map = widthnumericpreprocess(X, 4)
-print('ble')
-print(data_1)
 
-#data = pd.to_pickle('../../scania_pickles/train/scania_train_4bin_subsampled_split_na_normalized.pkl')
+#print(data_1)
 
-
-# #page = widthnumericpreprocess(page, 4)
-# 
-# 
-# 
-# #print(iono)
-# #print(page)
-# 
 print('going apri')
-apri = apriori(data_1, min_support=0.7, use_colnames=True)
-print(apri)
-# pageapri = apriori(page, min_support=0.6, use_colnames=True)
-# 
-# print(ionoapri)
-# 
+freq_items = apriori(data_1, min_support=0.99, use_colnames=True)
+#print(freq_items)
+
+
 
 print('\n')
 print('associating')
-rules = association_rules(apri, metric="confidence", min_threshold=0.9)
-print(rules)
+rules = association_rules(freq_items, metric="confidence", min_threshold=0.99)
+
+
+print('selecting rules by lift')
+lifts = []
+convs_index = []
+iter = 0
+for row in rules.iterrows():
+    lifts.append(row[1].lift)
+    if row[1].conviction < 1.01 and row[1].conviction > 0.99:
+        #print(f"found {row[1].conviction}")
+        convs_index.append(iter)
+    iter += 1
+        
+print(f"total association rules {len(rules)}")    
+print(f"average and dev for association rules lifts was {np.average(lifts)}, {np.std(lifts)}")
+print(f"found {len(convs_index)} association rules with less than 1% error if the association rule was purely random chance ")
+
+
+
+
+#print(rules)
+# 
+# rules_atribs = []
+# for atrib in rules:
+    
+    
+
+
+
+
+# for row in rules:
+#     print(rules[row])
+
+#print(rules[32])
 
 # 
 # 
