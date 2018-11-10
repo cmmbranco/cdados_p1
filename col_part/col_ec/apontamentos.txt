@@ -2,9 +2,14 @@
 
 ###########################################################################################
 # WORKING ON:                                                                             #
-#         NORMALIZATION OF DATA AND THINKING ABOUT REMOVAL OF HIGH % of attributes with 0 #
-#         RESAMPLING                                                                      #
+#        - CHI2 VALUES FOR FEATURE SELECTION                                              #
+#  LEFT:                                                                                  #
+#        - ASSOCIATION RULES                                                              #
+#        - CLUSTERING                                                                     #
 ###########################################################################################
+
+DISCRETIZATION HAS 0 INFLUENCE IN THE RESULTS ON CLASSIFICATION FOR KNN, NB, CART, RANDOMFOREST; (SUPERVISED LEARNING)
+
 
 -----------------------------------------------------------
 Number of Rows

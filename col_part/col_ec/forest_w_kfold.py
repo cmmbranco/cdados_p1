@@ -25,24 +25,24 @@ hinselmann_data = pd.read_csv('../col_dataset/hinselmann.csv')
 schiller_data = pd.read_csv('../col_dataset/schiller.csv')
 
 X_green = green_data.iloc[:,:62]
-X_hinselmann = hinselmann_data.iloc[:,:62]
-X_schiller = schiller_data.iloc[:,:62]
+#X_hinselmann = hinselmann_data.iloc[:,:62]
+#X_schiller = schiller_data.iloc[:,:62]
 
 X_green = np.asarray(X_green)
-X_hinselmann = np.asarray(X_hinselmann)
-X_schiller = np.asarray(X_schiller)
+#X_hinselmann = np.asarray(X_hinselmann)
+#X_schiller = np.asarray(X_schiller)
 
 Y_green = green_data['consensus']
-Y_hinselmann = hinselmann_data['consensus']
-Y_schiller = schiller_data['consensus']
+#Y_hinselmann = hinselmann_data['consensus']
+#Y_schiller = schiller_data['consensus']
 
 green_labels = pd.unique(Y_green)
-hinselmann_labels = pd.unique(Y_hinselmann)
-schiller_labels = pd.unique(Y_schiller)
+#hinselmann_labels = pd.unique(Y_hinselmann)
+#schiller_labels = pd.unique(Y_schiller)
 
 Y_green = np.asarray(Y_green)
-Y_hinselmann = np.asarray(Y_hinselmann)
-Y_schiller = np.asarray(Y_schiller)
+#Y_hinselmann = np.asarray(Y_hinselmann)
+#Y_schiller = np.asarray(Y_schiller)
 
 kf = StratifiedKFold(n_splits=n_fold, random_state=None, shuffle=False)
 
@@ -52,20 +52,27 @@ y_train = []
 x_test = []
 y_test = []
 
+##############
+#            #
+##############
+
+#X_green = pd.read_csv('../col_dataset/green_test.csv')
+#X_green = X_green.iloc[:,1:]
+#X_green = np.asarray(X_green)
+
 ##################
 # PRE-PROCESSING #
 ##################
 
 # Normalization (comment it if want to check results with no normalization)
-#X_hinselmann = normalize(X_hinselmann, axis=0, norm='max')
+X_green = normalize(X_green, axis=0, norm='max')
 
 # Resampling (comment it if want to check results with no resampling)
 #X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
 
 # Smote (comment it if want to check results with no smote)
-#smote = smt(ratio='minority')
-#X_hinselmann, Y_hinselmann = smote.fit_sample(X_hinselmann, Y_hinselmann)
-
+smote = smt(ratio='minority')
+X_green, Y_green = smote.fit_sample(X_green, Y_green)
 
 ###################################
 # CLASSIFICATION AND ROC ANALYSIS #
@@ -79,13 +86,13 @@ mean_fpr = np.linspace(0, 1, 100)
 i = 0
 fold = 0
 
-for train_index, test_index in kf.split(X_hinselmann, Y_hinselmann):
+for train_index, test_index in kf.split(X_green, Y_green):
     print("TRAIN:", train_index, "TEST:", test_index)
-    x_train, x_test = X_hinselmann[train_index], X_hinselmann[test_index]
-    y_train, y_test = Y_hinselmann[train_index], Y_hinselmann[test_index]
+    x_train, x_test = X_green[train_index], X_green[test_index]
+    y_train, y_test = Y_green[train_index], Y_green[test_index]
 
     # Binarize the output
-    y_test_bin = label_binarize(y_test, hinselmann_labels)
+    y_test_bin = label_binarize(y_test, green_labels)
     # n_classes_nb = y_test_bin_nb.shape[1]
 
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
@@ -100,7 +107,7 @@ for train_index, test_index in kf.split(X_hinselmann, Y_hinselmann):
              label='ROC fold %d (AUC = %0.2f)' % (i, roc_auc))
 
     reses = clf.predict(x_test)
-    confusion = confusion_matrix(y_test, reses, hinselmann_labels)
+    confusion = confusion_matrix(y_test, reses, green_labels)
 
     trueNeg = confusion[0][0]
     truePos = confusion[1][1]
