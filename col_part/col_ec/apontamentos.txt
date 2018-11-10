@@ -5,7 +5,7 @@
 #        - CHI2 VALUES FOR FEATURE SELECTION                                              #
 #  LEFT:                                                                                  #
 #        - ASSOCIATION RULES                                                              #
-#        - CLUSTERING                                                                     #
+#        - CLUSTERING        (SPECTRAL.. , KMEANS)        maybe DBSCAN                    #
 ###########################################################################################
 
 DISCRETIZATION HAS 0 INFLUENCE IN THE RESULTS ON CLASSIFICATION FOR KNN, NB, CART, RANDOMFOREST; (SUPERVISED LEARNING)
