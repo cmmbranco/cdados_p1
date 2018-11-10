@@ -1,0 +1,10 @@
+predicting
+Performances for CART where
+[[15264   361]
+ [  189   186]]
+number of predictions was 16000
+accuracy was 96.5625
+specificity rate was 0.976896
+sensivity rate was 0.496
+
+

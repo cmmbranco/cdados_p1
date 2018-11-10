@@ -90,11 +90,11 @@ a = silhouette_score(d, reses, metric='euclidean', sample_size=None, random_stat
 
 print(a)
 
-plt.scatter(X.iloc[:,0], X.iloc[:,1], c=reses, s=50, cmap='viridis')
+#plt.scatter(X.iloc[:,0], X.iloc[:,1], c=reses, s=50, cmap='viridis')
 
 
 
 
-plt.savefig('spectral.png')
+#plt.savefig('spectral.png')
 
 

@@ -1,0 +1,10 @@
+predicting
+Performances for KNN k3 where
+[[14492  1133]
+ [    9   366]]
+number of predictions was 16000
+accuracy was 92.8625
+specificity rate was 0.927488
+sensivity rate was 0.976
+
+

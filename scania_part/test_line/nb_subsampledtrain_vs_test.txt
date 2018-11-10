@@ -1,0 +1,10 @@
+predicting
+Performances for NB where
+[[ 3510 12115]
+ [    3   372]]
+number of predictions was 16000
+accuracy was 24.2625
+specificity rate was 0.22464
+sensivity rate was 0.992
+
+

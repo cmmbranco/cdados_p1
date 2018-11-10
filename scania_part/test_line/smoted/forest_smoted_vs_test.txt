@@ -1,0 +1,10 @@
+predicting
+Performances for R-Forest where
+[[15559    66]
+ [  129   246]]
+number of predictions was 16000
+accuracy was 98.78125
+specificity rate was 0.995776
+sensivity rate was 0.656
+
+

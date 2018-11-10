@@ -1,0 +1,10 @@
+predicting
+Performances for Rforest where
+[[13875  1750]
+ [    2   373]]
+number of predictions was 16000
+accuracy was 89.05
+specificity rate was 0.888
+sensivity rate was 0.9946666666666667
+
+

@@ -7,7 +7,6 @@ from sklearn.metrics import roc_curve, auc, confusion_matrix
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import label_binarize
 
-from sklearn.neighbors.classification import KNeighborsClassifier
 
 
 

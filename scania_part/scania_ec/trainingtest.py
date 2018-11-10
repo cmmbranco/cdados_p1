@@ -8,6 +8,11 @@ from sklearn.preprocessing import label_binarize
 from sklearn.feature_selection import chi2
 from sklearn.neighbors.classification import KNeighborsClassifier
 from sklearn.model_selection._split import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
+
+
 
 
 
@@ -32,56 +37,55 @@ x_test = test.iloc[:,1:]
 y_test = test['class']
 
 
-
 labels = pd.unique(y_test)
 
-chi, pval = chi2(x_train, y_train)
-
-print(pval)
-
-pvals = []
-atrib_todrop = []
-
-
-atribs = x_train.columns.values
-
-
-dic = {}
-
-index = 0
-for val in pval:
-    dic[index] = val
-    index += 1
-    
-
-dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
-    
-print(dic)
-
-i = 0
-
-to_stay = []
-
-for pair in dic:
-    if i == 101: #20 plus the nan 
-        break
-    to_stay.append(pair[0])
-    i+=1
-    
-i=0
-
-for atrib in atribs:
-    if i in to_stay:
-        i += 1
-    else:
-        i += 1
-        atrib_todrop.append(atrib)
+# chi, pval = chi2(x_train, y_train)
+# 
+# print(pval)
+# 
+# pvals = []
+# atrib_todrop = []
+# 
+# 
+# atribs = x_train.columns.values
 
 
-x_train = x_train.drop(atrib_todrop, axis=1)
+# dic = {}
+# 
+# index = 0
+# for val in pval:
+#     dic[index] = val
+#     index += 1
+#     
+# 
+# dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
+#     
+# print(dic)
+# 
+# i = 0
+# 
+# to_stay = []
+# 
+# for pair in dic:
+#     if i == 101: #20 plus the nan 
+#         break
+#     to_stay.append(pair[0])
+#     i+=1
+#     
+# i=0
+# 
+# for atrib in atribs:
+#     if i in to_stay:
+#         i += 1
+#     else:
+#         i += 1
+#         atrib_todrop.append(atrib)
+
+
+# x_train = x_train.drop(atrib_todrop, axis=1)
 x_train = np.asarray(x_train)
 
-x_test = x_test.drop(atrib_todrop, axis=1)
+# x_test = x_test.drop(atrib_todrop, axis=1)
 x_test = np.asarray(x_test)
 
 #print(data)
@@ -103,7 +107,14 @@ k = 3
 # Run classifier with cross-validation and plot ROC curves
 
 
-clf = KNeighborsClassifier(n_neighbors=k)
+#clf = KNeighborsClassifier(n_neighbors=k)
+#clf = clf = DecisionTreeClassifier()
+#clf = RandomForestClassifier(n_estimators=100)
+clf = GaussianNB()
+
+
+
+
 clf.fit(x_train, y_train)
 
  
@@ -122,8 +133,8 @@ print('predicting')
 reses = clf.predict(x_test)
 confusion = confusion_matrix(y_test, reses, labels)
 
-trueNeg = confusion[0][0]   
-truePos = confusion[1][1]  
+trueNeg = confusion[0][0]
+truePos = confusion[1][1]
     
 falseNeg = confusion[1][0]  
 falsePos = confusion[0][1]  
@@ -133,7 +144,7 @@ acc = ((truePos+trueNeg)/total) * 100.0
 specificity = trueNeg / (trueNeg + falsePos)
 sensivity = truePos / (truePos + falseNeg)
 
-print(f"Performances for KNN where")
+print(f"Performances for KNN k3 where")
 print(confusion)
 print(f'number of predictions was {total}')
 print(f'accuracy was {acc}')

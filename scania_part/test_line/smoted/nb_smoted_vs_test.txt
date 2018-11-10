@@ -1,0 +1,10 @@
+predicting
+Performances for NBAYES where
+[[14436  1189]
+ [  101   274]]
+number of predictions was 16000
+accuracy was 91.9375
+specificity rate was 0.923904
+sensivity rate was 0.7306666666666667
+
+
