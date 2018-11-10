@@ -56,33 +56,45 @@ plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5);
 plt.savefig('kmeans.png')
 
 
-
+d = distance_matrix(X, X)
 
 print('Rand score for kmeans')
 
 score = adjusted_rand_score(Y, y_kmeans)
-
 print(score)
 
-d = distance_matrix(X, X)
 
-print('running spectral')
-from sklearn.cluster import SpectralClustering
-sc = SpectralClustering(2, affinity='precomputed', n_init=100,
-                        assign_labels='kmeans')
-reses = sc.fit_predict(d)  
-
-print('Rand score for spectral')
-
-score = adjusted_rand_score(Y, reses)
-
-
-print('silhouette')
+print('silhouette score for kmeans')
 a = silhouette_score(d, y_kmeans, metric='euclidean', sample_size=None, random_state=None)
 
 
 print(a)
 
+d = distance_matrix(X, X)
 
+print('running spectral')
+from sklearn.cluster import SpectralClustering
+sc = SpectralClustering(3, affinity='precomputed', n_init=100,
+                        assign_labels='kmeans')
+reses = sc.fit_predict(d)  
+
+print('Rand score for spectral')
+
+score = adjusted_rand_score(reses, Y)
+
+print(score)
+
+print('silhouette score for spectral')
+a = silhouette_score(d, reses, metric='euclidean', sample_size=None, random_state=None)
+
+
+print(a)
+
+plt.scatter(X.iloc[:,0], X.iloc[:,1], c=reses, s=50, cmap='viridis')
+
+
+
+
+plt.savefig('spectral.png')
 
 
