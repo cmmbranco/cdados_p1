@@ -24,10 +24,9 @@ from sklearn.naive_bayes import GaussianNB
 #x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.7, stratify=Y)
 
 
-train = pd.read_pickle('../../scania_pickles/train/scania_train_subsampled_split_na_normalized.pkl')
+train = pd.read_pickle('../../scania_pickles/train/scania_train_smoted_split_na_normalized.pkl')
 
 test = pd.read_pickle('../../scania_pickles/test/scania_test_split_na_normalized.pkl')
-
 
 x_train = train.iloc[:,1:]
 y_train = train['class']
@@ -39,6 +38,11 @@ y_test = test['class']
 
 labels = pd.unique(y_test)
 
+
+atribs = []
+
+for atrib in x_train:
+    atribs.append(atrib)
 # chi, pval = chi2(x_train, y_train)
 # 
 # print(pval)
@@ -108,14 +112,51 @@ k = 3
 
 
 #clf = KNeighborsClassifier(n_neighbors=k)
-#clf = clf = DecisionTreeClassifier()
+clf = clf = DecisionTreeClassifier()
 #clf = RandomForestClassifier(n_estimators=100)
-clf = GaussianNB()
+#clf = GaussianNB()
 
 
 
 
 clf.fit(x_train, y_train)
+
+
+importances = clf.feature_importances_
+
+print(importances)
+
+dic = {}
+
+iter = 0
+
+for atrib in atribs:
+    dic[atrib] = importances[iter]
+    iter += 1
+    
+
+sorted_dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
+
+objects = []
+values = []
+
+top = 0
+for entry in sorted_dic:
+    if top == 21:
+        break
+    objects.append(entry[0])
+    values.append(entry[1])
+    top += 1
+
+y_pos = np.arange(len(objects))
+ 
+plt.bar(y_pos, values, align='center', alpha=0.5)
+plt.xticks(y_pos, objects)
+plt.xticks(rotation=45)
+plt.ylabel('Importance')
+plt.title('Cart smoted top 20 features by importance')
+ 
+plt.show()
 
  
 #tprs = []
