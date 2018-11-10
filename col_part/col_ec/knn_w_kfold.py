@@ -11,6 +11,8 @@ from sklearn.neighbors.classification import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import normalize
 from sklearn.utils import resample
+from imblearn.over_sampling import SMOTE as smt
+
 
 n_fold = 10
 k = 3
@@ -58,10 +60,14 @@ y_test = []
 ##################
 
 # Normalization (comment it if want to check results with no normalization)
-X_hinselmann = normalize(X_hinselmann, axis=0, norm='max')
+#X_hinselmann = normalize(X_hinselmann, axis=0, norm='max')
 
 # Resampling (comment it if want to check results with no resampling)
-X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
+#X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
+
+# Smote (comment it if want to check results with no smote)
+#smote = smt(ratio='minority')
+#X_hinselmann, Y_hinselmann = smote.fit_sample(X_hinselmann, Y_hinselmann)
 
 
 ###################################
@@ -84,7 +90,6 @@ for train_index, test_index in kf.split(X_hinselmann, Y_hinselmann):
     # Binarize the output
     y_test_bin = label_binarize(y_test, hinselmann_labels)
     # n_classes_nb = y_test_bin_nb.shape[1]
-
 
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
 
