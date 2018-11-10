@@ -166,7 +166,7 @@ i = 0
 to_stay = []
 
 for pair in dic:
-    if i == 101: #20 plus the nan 
+    if i == 21: #20 plus the nan 
         break
     to_stay.append(pair[0])
     i+=1
