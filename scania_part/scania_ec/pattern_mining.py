@@ -157,9 +157,9 @@ for val in pval:
     index += 1
     
 
-dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
+dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
     
-#print(dic)
+print(dic)
 
 i = 0
 
@@ -182,14 +182,15 @@ for atrib in atribs:
 
 X = X.drop(atrib_todrop, axis=1)
 
+#print(X)
 
 data_1, map = widthnumericpreprocess(X, 4)
 
 #print(data_1)
 
 print('going apri')
-freq_items = apriori(data_1, min_support=0.99, use_colnames=True)
-#print(freq_items)
+freq_items = apriori(data_1, min_support=0.70, use_colnames=True)
+print(freq_items)
 
 
 

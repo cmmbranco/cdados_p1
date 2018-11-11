@@ -24,7 +24,7 @@ from sklearn.naive_bayes import GaussianNB
 #x_train, x_test, y_train, y_test = train_test_split(X, Y, train_size=0.7, stratify=Y)
 
 
-train = pd.read_pickle('../../scania_pickles/train/scania_train_smoted_split_na_normalized.pkl')
+train = pd.read_pickle('../../scania_pickles/train/scania_train_subsampled_split_na_normalized.pkl')
 
 test = pd.read_pickle('../../scania_pickles/test/scania_test_split_na_normalized.pkl')
 
@@ -43,17 +43,18 @@ atribs = []
 
 for atrib in x_train:
     atribs.append(atrib)
+    
 # chi, pval = chi2(x_train, y_train)
 # 
-# print(pval)
+# #print(pval)
 # 
 # pvals = []
 # atrib_todrop = []
 # 
 # 
 # atribs = x_train.columns.values
-
-
+# 
+# 
 # dic = {}
 # 
 # index = 0
@@ -62,7 +63,7 @@ for atrib in x_train:
 #     index += 1
 #     
 # 
-# dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=True)
+# dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
 #     
 # print(dic)
 # 
@@ -71,7 +72,7 @@ for atrib in x_train:
 # to_stay = []
 # 
 # for pair in dic:
-#     if i == 101: #20 plus the nan 
+#     if i == 21: #20 plus the nan 
 #         break
 #     to_stay.append(pair[0])
 #     i+=1
@@ -84,6 +85,10 @@ for atrib in x_train:
 #     else:
 #         i += 1
 #         atrib_todrop.append(atrib)
+# 
+# X = x_train.drop(atrib_todrop, axis=1)
+
+#print(X)
 
 
 # x_train = x_train.drop(atrib_todrop, axis=1)

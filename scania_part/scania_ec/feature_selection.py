@@ -6,34 +6,6 @@ from sklearn.feature_selection import chi2
 
 
 
-data = pd.read_pickle('../../scania_pickles/train/scania_train_split_na_normalized.pkl')
-
-print(data)
-
-X = data.iloc[:,1:]
-Y=data['class']
-
-
-atribs = X.columns.values
-
-chi, pval = chi2(X, Y)
-
-print(pval)
-
-pvals = []
-atrib_todrop = []
-
-
-
-
-atri_index = 0
-for atrib in atribs:
-    if pval[atri_index] <= 0.01: #99% confidence for discarding attribute
-        atrib_todrop.append(atrib)
-        atri_index += 1
-    
-    else:
-        atri_index += 1
 
 
 
@@ -41,15 +13,59 @@ train = pd.read_pickle('../../scania_pickles/train/scania_train_smoted_split_na_
 
 test = pd.read_pickle('../../scania_pickles/test/scania_test_split_na_normalized.pkl')
 
+x_train = train.iloc[:,1:]
+y_train = train['class']
+
+atribs = train.columns.values
 
 
-bla = train.drop(atrib_todrop, axis=1)
+chi, pval = chi2(x_train, y_train)
+ 
+#print(pval)
+ 
+pvals = []
+atrib_todrop = []
+ 
+ 
+atribs = x_train.columns.values
+ 
+ 
+dic = {}
+ 
+index = 0
+for val in pval:
+    dic[index] = val
+    index += 1
+     
+ 
+dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
+     
+print(dic)
+ 
+i = 0
+ 
+to_stay = []
+ 
+for pair in dic:
+    if i == 21: #21
+        break
+    to_stay.append(pair[0])
+    i+=1
+     
+i=0
+ 
+for atrib in atribs:
+    if i in to_stay:
+        i += 1
+    else:
+        i += 1
+        atrib_todrop.append(atrib)
+ 
+x_train = x_train.drop(atrib_todrop, axis=1)
 
-x_train = bla.iloc[:,1:]
-y_train = bla['class']
+
 
 bla = test.drop(atrib_todrop, axis=1)
-print(bla)
 x_test = bla.iloc[:,1:]
 y_test = bla['class']
 
