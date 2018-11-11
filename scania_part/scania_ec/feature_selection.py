@@ -16,7 +16,7 @@ test = pd.read_pickle('../../scania_pickles/test/scania_test_split_na_normalized
 x_train = train.iloc[:,1:]
 y_train = train['class']
 
-atribs = train.columns.values
+atribs = x_train.columns.values
 
 
 chi, pval = chi2(x_train, y_train)
