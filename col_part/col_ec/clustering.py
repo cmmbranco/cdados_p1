@@ -18,6 +18,7 @@ from scipy.spatial import distance_matrix
 # DATA IO AND PREPARATION #
 ###########################
 
+#Alterar aqui o nome do ficheiro para trabalhar com os 3 ficheiros base(ainda falta adaptar para receber smoted/normalized)
 data = pd.read_csv('../col_dataset/green.csv')
 
 Y = data['consensus']
@@ -66,16 +67,16 @@ plt.savefig('kmeans.png')
 
 d = distance_matrix(X, X)
 
-print('Rand Score for kmeans')
+print ('--K-MEANS--')
+print('RAND SCORE')
 score = adjusted_rand_score(Y, y_kmeans)
 print (score)
 
-print ('Silhouette score for kmeans')
+print ('SILHOUETTE SCORE')
 a = silhouette_score(d, y_kmeans, metric='euclidean', sample_size=None, random_state=None)
 print (a)
 
 
-print ('---------------------------')
 ############
 # SPECTRAL #
 ############
@@ -86,11 +87,12 @@ spectral = SpectralClustering(2, affinity='precomputed', n_init=100, assign_labe
 
 reses = spectral.fit_predict(d)
 
-print('Rand Score for Spectral')
+print ('--SPECTRAL--')
+print('RAND SCORE')
 score = adjusted_rand_score(reses, Y)
 print(score)
 
-print('Silhouette score for spectral')
+print ('SILHOUETTE SCORE')
 a = silhouette_score(d, reses, metric='euclidean', sample_size=None, random_state=None)
 print (a)
 
