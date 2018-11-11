@@ -6,20 +6,6 @@ from sklearn.metrics import silhouette_score
 import numpy as np
 import itertools
 from scipy.spatial import distance_matrix
-
-def euclid(vec1, vec2):
-    if len(vec1) == len(vec2):
-        sum = 0
-        for pos in range(len(vec1)):
-            dif = vec1[pos]-vec2[pos]
-            square_dif = dif*dif
-            sum += square_dif
-            
-        ret = np.sqrt(sum)
-        
-        return ret
-    else:
-        print('vector lengths do not match')
         
         
 data = pd.read_pickle('../../scania_pickles/train/scania_train_subsampled_split_na_normalized.pkl')
@@ -37,7 +23,7 @@ for label in labels:
     print(rep)
     count += 1
  
-print(rep)
+#print(rep)
 
 kmeans = MiniBatchKMeans(n_clusters=2, random_state=0, batch_size=6)
 
@@ -74,7 +60,7 @@ d = distance_matrix(X, X)
 
 print('running spectral')
 from sklearn.cluster import SpectralClustering
-sc = SpectralClustering(3, affinity='precomputed', n_init=100,
+sc = SpectralClustering(2, affinity='precomputed', n_init=100,
                         assign_labels='kmeans')
 reses = sc.fit_predict(d)  
 
