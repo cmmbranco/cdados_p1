@@ -159,7 +159,7 @@ for val in pval:
 
 dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
     
-print(dic)
+#print(dic)
 
 i = 0
 
@@ -189,31 +189,57 @@ data_1, map = widthnumericpreprocess(X, 4)
 #print(data_1)
 
 print('going apri')
-freq_items = apriori(data_1, min_support=0.70, use_colnames=True)
-print(freq_items)
+freq_items = apriori(data_1, min_support=0.80, use_colnames=True)
+#print(freq_items)
+
 
 
 
 print('\n')
 print('associating')
-rules = association_rules(freq_items, metric="confidence", min_threshold=0.99)
+rules = association_rules(freq_items, metric="confidence", min_threshold=0.95)
 
 
-print('selecting rules by lift')
+#print(rules)
+print(f"total association rules {len(rules)}")  
+
 lifts = []
 convs_index = []
-iter = 0
-for row in rules.iterrows():
-    lifts.append(row[1].lift)
-    if row[1].conviction < 1.01 and row[1].conviction > 0.99:
-        #print(f"found {row[1].conviction}")
-        convs_index.append(iter)
-    iter += 1
-        
-print(f"total association rules {len(rules)}")    
-print(f"average and dev for association rules lifts was {np.average(lifts)}, {np.std(lifts)}")
-print(f"found {len(convs_index)} association rules with less than 1% error if the association rule was purely random chance ")
 
+after_lift = [] 
+for row in rules.iterrows():
+    if row[1].lift > 1.05 or row[1].lift < 0.95:
+        after_lift.append(row)
+ 
+ 
+
+print(f"found {len(after_lift)} rules with lift > 1.05")
+ 
+after_conv = []
+
+iter = 0
+ 
+ 
+print("rule respecting criteria")
+for rule in rules.iterrows():
+    if rule[1].conviction <= 1.2:
+        after_conv.append(rule)
+        
+
+print(f"found {len(after_conv)} rules with conviction <= 1.2 \n")
+
+for rule in after_conv:
+    print(rule)
+
+
+
+
+# for rule in after_lift:
+#     print(rule)
+        
+#print(f"average and dev for association rules lifts was {np.average(lifts)}, {np.std(lifts)}")
+#print(f"found {len(convs_index)} association rules with less than 10% error if the association rule was purely random chance ")
+# 
 
 
 

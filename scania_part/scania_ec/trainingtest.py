@@ -44,50 +44,50 @@ atribs = []
 for atrib in x_train:
     atribs.append(atrib)
     
-# chi, pval = chi2(x_train, y_train)
-# 
-# #print(pval)
-# 
-# pvals = []
-# atrib_todrop = []
-# 
-# 
-# atribs = x_train.columns.values
-# 
-# 
-# dic = {}
-# 
-# index = 0
-# for val in pval:
-#     dic[index] = val
-#     index += 1
-#     
-# 
-# dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
-#     
-# print(dic)
-# 
-# i = 0
-# 
-# to_stay = []
-# 
-# for pair in dic:
-#     if i == 21: #20 plus the nan 
-#         break
-#     to_stay.append(pair[0])
-#     i+=1
-#     
-# i=0
-# 
-# for atrib in atribs:
-#     if i in to_stay:
-#         i += 1
-#     else:
-#         i += 1
-#         atrib_todrop.append(atrib)
-# 
-# X = x_train.drop(atrib_todrop, axis=1)
-
+chi, pval = chi2(x_train, y_train)
+ 
+#print(pval)
+ 
+pvals = []
+atrib_todrop = []
+ 
+ 
+atribs = x_train.columns.values
+ 
+ 
+dic = {}
+ 
+index = 0
+for val in pval:
+    dic[index] = val
+    index += 1
+     
+ 
+dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
+     
+print(dic)
+ 
+i = 0
+ 
+to_stay = []
+ 
+for pair in dic:
+    if i == 21: #20 plus the nan 
+        break
+    to_stay.append(pair[0])
+    i+=1
+     
+i=0
+ 
+for atrib in atribs:
+    if i in to_stay:
+        i += 1
+    else:
+        i += 1
+        atrib_todrop.append(atrib)
+ 
+X = x_train.drop(atrib_todrop, axis=1)
+ 
 #print(X)
 
 
