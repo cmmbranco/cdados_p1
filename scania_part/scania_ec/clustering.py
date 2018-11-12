@@ -20,7 +20,7 @@ count = 0
 rep = Y
 for label in labels:
     rep = rep.replace(label, count)
-    print(rep)
+    #print(rep)
     count += 1
  
 #print(rep)
