@@ -4,6 +4,6 @@ silhouette score for kmeans
 0.5538877748422311
 running spectral
 Rand score for spectral
-0.00030419612114371324
+0.00023619477404349055
 silhouette score for spectral
-0.18113388484795076
+0.06168264055262992
