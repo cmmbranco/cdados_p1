@@ -173,14 +173,23 @@ for pair in dic:
     
 i=0
 
+atribs_to_stay = []
+
 for atrib in atribs:
     if i in to_stay:
+        atribs_to_stay.append(atrib)
         i += 1
     else:
         i += 1
         atrib_todrop.append(atrib)
 
 X = X.drop(atrib_todrop, axis=1)
+
+print(f"staying features are:")
+
+for atrib in atribs_to_stay:
+    print(atrib)
+
 
 #print(X)
 
@@ -191,6 +200,7 @@ data_1, map = widthnumericpreprocess(X, 4)
 print('going apri')
 freq_items = apriori(data_1, min_support=0.80, use_colnames=True)
 #print(freq_items)
+print(len(freq_items))
 
 
 

@@ -1,4 +1,27 @@
+staying features are:
+aa_000
+aa_000_na
+ag_003
+ah_000
+an_000
+ap_000
+aq_000
+bb_000
+bg_000
+bj_000
+bt_000
+bu_000
+bv_000
+bx_000
+by_000
+cc_000
+ci_000
+cq_000
+cs_004
+dn_000
+ee_005
 going apri
+53
 
 
 associating
@@ -7,7 +30,7 @@ found 76 rules with lift > 1.05
 rule respecting criteria
 found 1 rules with conviction <= 1.2 
 
-(23, antecedents           (ee_005_0)
+(22, antecedents           (ee_005_0)
 consequents           (cs_004_0)
 antecedent support         0.979
 consequent support         0.949
@@ -16,5 +39,4 @@ confidence              0.957099
 lift                     1.00853
 leverage                0.007929
 conviction               1.18879
-Name: 23, dtype: object) 
-bla
+Name: 22, dtype: object)
