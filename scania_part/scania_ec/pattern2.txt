@@ -1,0 +1,20 @@
+going apri
+
+
+associating
+total association rules 163
+found 76 rules with lift > 1.05
+rule respecting criteria
+found 1 rules with conviction <= 1.2 
+
+(23, antecedents           (ee_005_0)
+consequents           (cs_004_0)
+antecedent support         0.979
+consequent support         0.949
+support                    0.937
+confidence              0.957099
+lift                     1.00853
+leverage                0.007929
+conviction               1.18879
+Name: 23, dtype: object) 
+bla
