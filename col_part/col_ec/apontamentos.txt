@@ -3,23 +3,61 @@
 ###########################################################################################
 # WORKING ON:                                                                             #
 #        - CHI2 VALUES FOR FEATURE SELECTION                                              #
-#  LEFT:                                                                                  #
-#        - ASSOCIATION RULES                                                              #
-#        - CLUSTERING        (SPECTRAL.. , KMEANS)        maybe DBSCAN                    #
+# LEFT:                                                                                   #
+#        - ASSOCIATION RULES  (APRIORI.., FPGROWTH)                                       #
 ###########################################################################################
+
 
 DISCRETIZATION HAS 0 INFLUENCE IN THE RESULTS ON CLASSIFICATION FOR KNN, NB, CART, RANDOMFOREST; (SUPERVISED LEARNING)
 
+------------------------------------------------------------------------
+CLUSTERING:
 
------------------------------------------------------------
+RESULTS FOR BASE SETS(NOT SMOTED, DISCRETIZED AND NORMALIZED)
+--      GREEN       --
+--K-MEANS--
+RAND SCORE
+0.0570282695186
+SILHOUETTE SCORE
+0.394504322727
+--SPECTRAL--
+RAND SCORE
+0.0235611299965
+SILHOUETTE SCORE
+0.316534277368
+
+--      HINSELMANN      --
+--K-MEANS--
+RAND SCORE
+-0.00825488518043
+SILHOUETTE SCORE
+0.332876623033
+--SPECTRAL--
+RAND SCORE
+-0.0162487267789
+SILHOUETTE SCORE
+0.0779314831609
+
+--      SCHILLER        --
+--K-MEANS--
+RAND SCORE
+0.12290879239
+SILHOUETTE SCORE
+0.352128646814
+--SPECTRAL--
+RAND SCORE
+0.0361297280641
+SILHOUETTE SCORE
+0.142354328355
+
+------------------------------------------------------------------------
 Number of Rows
 {'green': 98, 'hinselmann': 97, 'schiller': 92}
-
 
 KNN:
 3; 5; 11; 21
 CONFIRMED. NO MISSING VALUES
-----------------------------------------------------------------------
+------------------------------------------------------------------------
 
 CHECKING FOR CONSENSUAL COUNTS:
 
@@ -64,6 +102,7 @@ CHECKING FOR OUTLIERS COUNTS:
 
 -----------------------------------------------------------------------
 ALGORITHMS
+
 -- CART --
 
 -- FOREST --
