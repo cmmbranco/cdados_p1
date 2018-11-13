@@ -76,19 +76,28 @@ def widthnumericpreprocess(df, bins):
                         break
                     numbs.append(iter)
                     iter +=1    
-                print(numbs)
+                #print(numbs)
                 
                         
                 numbs = sorted(numbs, reverse=False)
+                #print(numbs)
                 
                 
+                bla = pd.Series(data=numbs)
+                #print(vec)
+                #print(bla)
                 
+                vec = vec.append(bla)
+                #print(bla)
+                
+                
+                #print(vec)
                 #print(range(len(bin1) - 2 ))
                 
                 # Fitting One Hot Encoding on train data
                 temp = dummy_encoder.fit_transform(vec.values.reshape(-1,1)).toarray()
                               
-                
+                temp = temp[:len(temp)-4]
                 
                 #print(temp)
                 # Changing encoded features into a dataframe with new column names
@@ -124,8 +133,6 @@ def widthnumericpreprocess(df, bins):
             print('column with n dif values less than bins or non-numeric')
             
             
-    print(pdf)
-    return
     
     return pdf, bin_map
 
