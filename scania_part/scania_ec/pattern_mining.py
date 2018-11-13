@@ -70,17 +70,24 @@ def widthnumericpreprocess(df, bins):
                 
                 numbs = []
                 
-                for i in vec:
-                    if i not in numbs:
-                        numbs.append(int(i))
+                iter = 0
+                for pair in bin1:
+                    if iter == len(bin1)-1:
+                        break
+                    numbs.append(iter)
+                    iter +=1    
+                print(numbs)
+                
                         
                 numbs = sorted(numbs, reverse=False)
+                
+                
                 
                 #print(range(len(bin1) - 2 ))
                 
                 # Fitting One Hot Encoding on train data
                 temp = dummy_encoder.fit_transform(vec.values.reshape(-1,1)).toarray()
-                
+                              
                 
                 
                 #print(temp)
@@ -117,6 +124,8 @@ def widthnumericpreprocess(df, bins):
             print('column with n dif values less than bins or non-numeric')
             
             
+    print(pdf)
+    return
     
     return pdf, bin_map
 
@@ -187,14 +196,18 @@ X = X.drop(atrib_todrop, axis=1)
 
 print(f"staying features are:")
 
-for atrib in atribs_to_stay:
-    print(atrib)
+#for atrib in atribs_to_stay:
+    #print(atrib)
 
 
 #print(X)
 
 data_1, map = widthnumericpreprocess(X, 4)
+dataatri = []
+for atrib in data_1:
+    dataatri.append(atrib)
 
+print(len(dataatri))
 #print(data_1)
 
 print('going apri')
