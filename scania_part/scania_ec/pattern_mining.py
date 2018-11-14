@@ -7,6 +7,7 @@ from mlxtend.frequent_patterns import apriori, association_rules
 #from pymining import seqmining
 from prefixspan import PrefixSpan
 from sklearn.feature_selection import chi2
+import matplotlib.pyplot as plt
 
 def columnisbinary(column):
     
@@ -214,117 +215,83 @@ dataatri = []
 for atrib in data_1:
     dataatri.append(atrib)
 
-print(len(dataatri))
+#print(len(dataatri))
 #print(data_1)
 
-print('going apri')
-freq_items = apriori(data_1, min_support=0.80, use_colnames=True)
+support = 0.1
+
+support_vec = []
+freq_pattern_len_vec = []
+n_rules = []
+avg_lift_vec = []
+
+while support < 1:
+    
+    print(support)
+    support_vec.append(support)
+    
+    
+    print('going apri')
+    freq_items = apriori(data_1, min_support=support, use_colnames=True)
+    support += 0.1
 #print(freq_items)
-print(len(freq_items))
 
+    print('found frequent patterns:')
+    print(len(freq_items))
+    
+    freq_pattern_len_vec.append(len(freq_items))
 
-
-
-print('\n')
-print('associating')
-rules = association_rules(freq_items, metric="confidence", min_threshold=0.95)
-
-
-#print(rules)
-print(f"total association rules {len(rules)}")  
-
-lifts = []
-convs_index = []
-
-after_lift = [] 
-for row in rules.iterrows():
-    if row[1].lift > 1.05 or row[1].lift < 0.95:
-        after_lift.append(row)
- 
- 
-
-print(f"found {len(after_lift)} rules with lift > 1.05")
- 
-after_conv = []
-
-iter = 0
- 
- 
-print("rule respecting criteria")
-for rule in rules.iterrows():
-    if rule[1].conviction <= 1.2:
-        after_conv.append(rule)
-        
-
-print(f"found {len(after_conv)} rules with conviction <= 1.2 \n")
-
-for rule in after_conv:
-    print(rule)
-
-
-
-
-# for rule in after_lift:
-#     print(rule)
-        
-#print(f"average and dev for association rules lifts was {np.average(lifts)}, {np.std(lifts)}")
-#print(f"found {len(convs_index)} association rules with less than 10% error if the association rule was purely random chance ")
-# 
-
-
-
-#print(rules)
-# 
-# rules_atribs = []
-# for atrib in rules:
+    
+    if (len(freq_items) < 500000):
+    
+        print('\n')
+        print('associating')
+        rules = association_rules(freq_items, metric="confidence", min_threshold=0.95)
     
     
+        print(f"total association rules {len(rules)}") 
+        
+        n_rules.append(len(rules)) 
+    
+        lifts = []
+        convs_index = []
+    
+        after_lift = [] 
+        for row in rules.iterrows():
+            lifts.append(row[1].lift)
+    #         if row[1].lift > 1.05 or row[1].lift < 0.95:
+    #             after_lift.append(row)
+    
+        
+        avg_lift = np.average(lifts)
+        
+        avg_lift_vec.append(avg_lift)
+     
+     
+    
+        #print(f"found {len(after_lift)} rules with lift > 1.05")
+        after_conv = []
+    
+        iter = 0
+     
+     
+        print("rule respecting criteria")
+        for rule in rules.iterrows():
+            if rule[1].conviction <= 1.2:
+                after_conv.append(rule)
+            
+    
+        print(f"found {len(after_conv)} rules with conviction <= 1.2 \n")
 
+#     for rule in after_conv:
+#         print(rule)
 
-
-
-# for row in rules:
-#     print(rules[row])
-
-#print(rules[32])
-
-# 
-# 
-#     
-#     
-#     
-#     
-# 
-# from pymining import assocrules
-# 
-# rules = assocrules.mine_assoc_rules(ionoapri, min_support=1500, min_confidence=0.8)
-# rules
+y_pos = np.arange(len(support_vec))
+performance = [10,8,6,4,2,1]
  
-# freq_seqs = seqmining.freq_seq_enum(iono, 550)
-# print(freq_seqs)
+plt.bar(y_pos, freq_pattern_len_vec, align='center', alpha=0.5)
+plt.xticks(y_pos, freq_pattern_len_vec)
+plt.ylabel('Nº Freq Items')
+plt.title('Freq. Items by support')
  
-#seqmining
-# fp = open('../../datasets/sign.txt')
-# line = fp.readline()
-# seqdata = []
-# while line:
-#     seqdata.append(line.strip().split(' '))
-#     line = fp.readline()
-# fp.close()
-
-
-####
-####Sequential mining
-# seqdata = np.asarray(data_1)
-# freq_seqs = seqmining.freq_seq_enum(seqdata, 550)
-# print("frequent items")
-# print(sorted(freq_seqs), '\n')
-#  
-# print("prefix span")
-# ps = PrefixSpan(seqdata)
-# print(ps.frequent(500, closed=True),'\n')
-#  
-#  
-# print("topk")
-# print(ps.topk(5, closed=True), '\n')
-
+plt.show()
