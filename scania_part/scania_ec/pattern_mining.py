@@ -22,6 +22,7 @@ def columnisbinary(column):
         
 def widthnumericpreprocess(df, bins):
     #label_encoder = LabelEncoder()
+    removed = []
     dummy_encoder = OneHotEncoder(categories='auto')
     pdf = pd.DataFrame()
     
@@ -29,9 +30,13 @@ def widthnumericpreprocess(df, bins):
     bin_map = {}
     numbs = []
     
+    atricount = 0
     
     for atrib in df:
         
+   
+    
+        atricount += 1
         
         if columnisbinary(df[atrib]):
             pdf = pd.concat([pdf, df[atrib]], axis=1)
@@ -40,8 +45,13 @@ def widthnumericpreprocess(df, bins):
         elif df[atrib].dtype == np.float64 or df[atrib].dtype == np.int64:
             
             #can make bins
-            if df[atrib].nunique() >= bins:
+            
+            if df[atrib].nunique() > 2:
+                #print('more unique than bins')
                 intervals, bin1 = pd.cut(df[atrib], bins, retbins=True) 
+                
+                
+                #print(intervals)
                 
                 vec = []
                 
@@ -55,10 +65,11 @@ def widthnumericpreprocess(df, bins):
                 #store bin mapping (binval, binID)
                 bin_map[atrib] = vec
                 
-                
                 vec = df[atrib]
                 
+                
                 for val in range(len(df[atrib])):
+                    
                     
                     counter = 0
                     
@@ -83,10 +94,12 @@ def widthnumericpreprocess(df, bins):
                 
                 
                 bla = pd.Series(data=numbs)
-                #print(vec)
+                #print(len(vec))
                 #print(bla)
                 
                 vec = vec.append(bla)
+                
+                
                 #print(bla)
                 
                 
@@ -96,7 +109,12 @@ def widthnumericpreprocess(df, bins):
                 # Fitting One Hot Encoding on train data
                 temp = dummy_encoder.fit_transform(vec.values.reshape(-1,1)).toarray()
                               
+                #print(temp)
                 temp = temp[:len(temp)-4]
+                
+                #print(atrib)
+                #print(temp)
+                #print(numbs)
                 
                 #print(temp)
                 # Changing encoded features into a dataframe with new column names
@@ -115,23 +133,32 @@ def widthnumericpreprocess(df, bins):
                 
                 temp = temp.map({vals[0]: 0, vals[1]: 1})
                 
+            
+            
+            elif df[atrib].nunique() == 1:
+                removed.append(atrib)
+                print('removed atrib')
                 
+            
             else:
+                print(df[atrib].nunique())
                 print('debug \n')
                 return
             #temp = temp.set_index(df.index.values)
             # adding the new One Hot Encoded varibales to the dataframe
             #print(pdf)
             
-            pdf = pd.concat([pdf, temp], axis=1)
+            
+            if atrib not in removed:
+                pdf = pd.concat([pdf, temp], axis=1)
                 
             #print(pdf)
             
         #column is not binary and cannot be discritized by formula
         else:
             print('column with n dif values less than bins or non-numeric')
-            
-            
+        
+        
     
     return pdf, bin_map
 
@@ -149,68 +176,78 @@ def printmapping(mapping):
 
 data = pd.read_pickle('../../scania_pickles/train/scania_train_bymedian.pkl')
 
-data = data.sample(n = 5000, axis = 0, replace=True)
+
 
 Y = data['class']
 X = data.iloc[:,1:]
 
-# 
-# chi, pval = chi2(X, Y)
-# 
-# #print(pval)
-# 
-# pvals = []
-# atrib_todrop = []
-# 
-# 
-# atribs = X.columns.values
-# 
-# 
-# dic = {}
-# 
-# index = 0
-# for val in pval:
-#     dic[index] = val
-#     index += 1
-#     
-# 
-# dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
-#     
-# #print(dic)
-# 
-# i = 0
-# 
-# to_stay = []
-# 
-# for pair in dic:
-#     if i == 21: #20 plus the nan 
-#         break
-#     to_stay.append(pair[0])
-#     i+=1
-#     
-# i=0
-# 
-# atribs_to_stay = []
-# 
-# for atrib in atribs:
-#     if i in to_stay:
-#         atribs_to_stay.append(atrib)
-#         i += 1
-#     else:
-#         i += 1
-#         atrib_todrop.append(atrib)
-# 
-# X = X.drop(atrib_todrop, axis=1)
-# 
-# print(f"staying features are:")
+ 
+chi, pval = chi2(X, Y)
+ 
+#print(pval)
+ 
+pvals = []
+atrib_todrop = []
+ 
+ 
+atribs = X.columns.values
+ 
+ 
+dic = {}
+ 
+index = 0
+for val in pval:
+    dic[index] = val
+    index += 1
+     
+ 
+dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
+     
+#print(dic)
+ 
+i = 0
+ 
+to_stay = []
+ 
+for pair in dic:
+    if i == 21: #20 plus the nan 
+        break
+    to_stay.append(pair[0])
+    i+=1
+     
+i=0
+ 
+atribs_to_stay = []
+ 
+for atrib in atribs:
+    if i in to_stay:
+        atribs_to_stay.append(atrib)
+        i += 1
+    else:
+        i += 1
+        atrib_todrop.append(atrib)
+ 
+data = data.drop(atrib_todrop, axis=1)
+
+data = data.sample(n = 500, axis = 0, replace=True)
+
+data = data.reset_index()
+
+data = data.iloc[:,1:]
+
+Y = data['class']
+X = data.iloc[:,1:]
+ 
+print(f"staying features are: {len(atribs_to_stay)}")
 
 #for atrib in atribs_to_stay:
     #print(atrib)
 
 
 #print(X)
-
+print('numeric')
 data_1, map = widthnumericpreprocess(X, 4)
+print('after')
 dataatri = []
 # for atrib in data_1:
 #     dataatri.append(atrib)
@@ -218,10 +255,11 @@ dataatri = []
 #print(len(dataatri))
 #print(data_1)
 
-support = 0.1
+support = 0.6
 
 support_vec = []
-freq_pattern_len_vec = []
+freq_items_len_vec = []
+
 n_rules = []
 avg_lift_vec = []
 
@@ -231,12 +269,18 @@ while support <= 1:
     
     
     print('going apri')
+#     atcount = 0
+#     for atrib in data_1:
+#         atcount += 1
+#         
+#     print(atcount)
+    
     freq_items = apriori(data_1, min_support=support, use_colnames=True)
     
     if support > 0.8:
-        support += 0.05
+        support += 0.0500
     else:
-        support += 0.1
+        support += 0.1000
         
     print(f"next support is: {support}")
 #print(freq_items)
@@ -244,10 +288,10 @@ while support <= 1:
     print('found frequent patterns:')
     print(len(freq_items))
     
-    freq_pattern_len_vec.append(len(freq_items))
+    freq_items_len_vec.append(len(freq_items))
 
     
-    if (len(freq_items) < 30000 and len(freq_items) > 0):
+    if (len(freq_items) < 530000 and len(freq_items) > 0):
     
         print('\n')
         print('associating')
@@ -288,18 +332,23 @@ while support <= 1:
     
         print(f"found {len(after_conv)} rules with conviction <= 1.2 \n")
         
-        for rule in after_conv:
-            print(rule)
+        #for rule in after_conv:
+            #print(rule)
 
 #     for rule in after_conv:
 #         print(rule)
-
-y_pos = np.arange(len(support_vec))
-#performance = [10,8,6,4,2,1]
- 
-plt.bar(y_pos, freq_pattern_len_vec, align='center', alpha=0.5)
-plt.xticks(y_pos, freq_pattern_len_vec, rotation ='vertical')
+y_pos = np.arange(max(avg_lift_vec))
+  
+plt.bar(y_pos, n_rules, align='center', alpha=0.5)
+plt.xticks(y_pos, support_vec, rotation ='vertical')
 plt.ylabel('Nº Freq Items')
 plt.title('Freq. Items by support')
+y_pos = np.arange(len(support_vec))
+#  y_pos = np.arange(len(support_vec))
+#
+# plt.bar(y_pos, freq_items_len_vec, align='center', alpha=0.5)
+# plt.xticks(y_pos, support_vec, rotation ='vertical')
+# plt.ylabel('Nº Freq Items')
+# plt.title('Freq. Items by support')
  
 plt.show()
