@@ -149,60 +149,62 @@ def printmapping(mapping):
 
 
 
-data = pd.read_pickle('../../scania_pickles/train/scania_train_subsampled_split_na_normalized.pkl')
+data = pd.read_pickle('../../scania_pickles/train/scania_train_bymedian.pkl')
+
+data = data.sample(n = 5000, axis = 0, replace=True)
 
 Y = data['class']
 X = data.iloc[:,1:]
 
-
-chi, pval = chi2(X, Y)
-
-#print(pval)
-
-pvals = []
-atrib_todrop = []
-
-
-atribs = X.columns.values
-
-
-dic = {}
-
-index = 0
-for val in pval:
-    dic[index] = val
-    index += 1
-    
-
-dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
-    
-#print(dic)
-
-i = 0
-
-to_stay = []
-
-for pair in dic:
-    if i == 21: #20 plus the nan 
-        break
-    to_stay.append(pair[0])
-    i+=1
-    
-i=0
-
-atribs_to_stay = []
-
-for atrib in atribs:
-    if i in to_stay:
-        atribs_to_stay.append(atrib)
-        i += 1
-    else:
-        i += 1
-        atrib_todrop.append(atrib)
-
-X = X.drop(atrib_todrop, axis=1)
-
-print(f"staying features are:")
+# 
+# chi, pval = chi2(X, Y)
+# 
+# #print(pval)
+# 
+# pvals = []
+# atrib_todrop = []
+# 
+# 
+# atribs = X.columns.values
+# 
+# 
+# dic = {}
+# 
+# index = 0
+# for val in pval:
+#     dic[index] = val
+#     index += 1
+#     
+# 
+# dic = sorted(dic.items(), key=lambda kv: kv[1], reverse=False)
+#     
+# #print(dic)
+# 
+# i = 0
+# 
+# to_stay = []
+# 
+# for pair in dic:
+#     if i == 21: #20 plus the nan 
+#         break
+#     to_stay.append(pair[0])
+#     i+=1
+#     
+# i=0
+# 
+# atribs_to_stay = []
+# 
+# for atrib in atribs:
+#     if i in to_stay:
+#         atribs_to_stay.append(atrib)
+#         i += 1
+#     else:
+#         i += 1
+#         atrib_todrop.append(atrib)
+# 
+# X = X.drop(atrib_todrop, axis=1)
+# 
+# print(f"staying features are:")
 
 #for atrib in atribs_to_stay:
     #print(atrib)
@@ -212,8 +214,8 @@ print(f"staying features are:")
 
 data_1, map = widthnumericpreprocess(X, 4)
 dataatri = []
-for atrib in data_1:
-    dataatri.append(atrib)
+# for atrib in data_1:
+#     dataatri.append(atrib)
 
 #print(len(dataatri))
 #print(data_1)
@@ -225,15 +227,20 @@ freq_pattern_len_vec = []
 n_rules = []
 avg_lift_vec = []
 
-while support < 1:
-    
+while support <= 1:
     print(support)
     support_vec.append(support)
     
     
     print('going apri')
     freq_items = apriori(data_1, min_support=support, use_colnames=True)
-    support += 0.1
+    
+    if support > 0.8:
+        support += 0.05
+    else:
+        support += 0.1
+        
+    print(f"next support is: {support}")
 #print(freq_items)
 
     print('found frequent patterns:')
@@ -242,7 +249,7 @@ while support < 1:
     freq_pattern_len_vec.append(len(freq_items))
 
     
-    if (len(freq_items) < 500000):
+    if (len(freq_items) < 30000 and len(freq_items) > 0):
     
         print('\n')
         print('associating')
@@ -282,15 +289,18 @@ while support < 1:
             
     
         print(f"found {len(after_conv)} rules with conviction <= 1.2 \n")
+        
+        for rule in after_conv:
+            print(rule)
 
 #     for rule in after_conv:
 #         print(rule)
 
 y_pos = np.arange(len(support_vec))
-performance = [10,8,6,4,2,1]
+#performance = [10,8,6,4,2,1]
  
 plt.bar(y_pos, freq_pattern_len_vec, align='center', alpha=0.5)
-plt.xticks(y_pos, freq_pattern_len_vec)
+plt.xticks(y_pos, freq_pattern_len_vec, rotation ='vertical')
 plt.ylabel('Nº Freq Items')
 plt.title('Freq. Items by support')
  
