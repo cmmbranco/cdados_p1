@@ -4,8 +4,6 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 from mlxtend.frequent_patterns import apriori, association_rules
-#from pymining import seqmining
-from prefixspan import PrefixSpan
 from sklearn.feature_selection import chi2
 import matplotlib.pyplot as plt
 
