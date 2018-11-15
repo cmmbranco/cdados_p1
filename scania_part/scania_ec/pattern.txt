@@ -1,0 +1,33 @@
+0.1
+found frequent items:
+1572863
+0.2
+found frequent items:
+1048575
+0.30000000000000004
+found frequent items:
+1048575
+0.4
+found frequent items:
+1048575
+0.5
+found frequent items:
+1048575
+0.6
+found frequent items:
+1048575
+0.7
+found frequent items:
+1048575
+0.7999999999999999
+found frequent items:
+524351
+0.8999999999999999
+found frequent items:
+523263
+0.95
+found frequent items:
+69593
+1.0
+found frequent items:
+0
