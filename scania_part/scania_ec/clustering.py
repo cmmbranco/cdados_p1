@@ -6,12 +6,24 @@ from sklearn.metrics import silhouette_score
 import numpy as np
 import itertools
 from scipy.spatial import distance_matrix
+from sklearn.preprocessing import normalize
+
         
         
-data = pd.read_pickle('../../scania_pickles/train/scania_train_subsampled_split_na_normalized.pkl')
+data = pd.read_pickle('../../scania_pickles/train/scania_train_bymedian.pkl')
+
+
+data = data.sample(n = 5000, axis = 0, replace=True)
+
+print(data)
 
 Y = data['class']
 X = data.iloc[:,1:]
+
+
+X_normalized = normalize(X, axis=0, norm='max')
+
+
 
 
 labels = pd.unique(Y)
@@ -32,31 +44,30 @@ y_kmeans = kmeans.predict(X)
 
 
 
-plt.scatter(X.iloc[:,0], X.iloc[:,1], c=y_kmeans, s=50, cmap='viridis')
+#plt.scatter(X.iloc[:,0], X.iloc[:,1], c=y_kmeans, s=50, cmap='viridis')
 
-centers = kmeans.cluster_centers_
-plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5);
-
-
-
-plt.savefig('kmeans.png')
+#centers = kmeans.cluster_centers_
+#plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5);
 
 
-d = distance_matrix(X, X)
+
+#plt.savefig('kmeans.png')
+
+
+
 
 print('Rand score for kmeans')
 
 score = adjusted_rand_score(Y, y_kmeans)
 print(score)
 
-
+d = distance_matrix(X, X)
 print('silhouette score for kmeans')
 a = silhouette_score(d, y_kmeans, metric='euclidean', sample_size=None, random_state=None)
 
 
 print(a)
 
-d = distance_matrix(X, X)
 
 print('running spectral')
 from sklearn.cluster import SpectralClustering
