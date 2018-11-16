@@ -27,7 +27,7 @@ found frequent items:
 523263
 0.95
 found frequent items:
-69593
+143167
 1.0
 found frequent items:
 0
