@@ -1,0 +1,10 @@
+0.98
+found frequent items:
+5354
+total association rules 398912
+avg lift for rules were 1.0064601934204958
+filtering by rules with lift < 0.95 or > 1.05
+found 0
+found 0 rules with conviction <= 1.2 
+
+printing rules

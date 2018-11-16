@@ -1,9 +1,0 @@
-Rand score for kmeans
-0.20221556570412177
-silhouette score for kmeans
-0.5538877748422311
-running spectral
-Rand score for spectral
-0.00023619477404349055
-silhouette score for spectral
-0.06168264055262992
