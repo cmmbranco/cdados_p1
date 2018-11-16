@@ -19,10 +19,10 @@ from scipy.spatial import distance_matrix
 ###########################
 
 #Alterar aqui o nome do ficheiro para trabalhar com os 3 ficheiros base(ainda falta adaptar para receber smoted/normalized)
-data = pd.read_csv('../col_dataset/green.csv')
+data = pd.read_csv('../col_dataset/schiller_norm.csv')
 
+X = data.iloc[:,1:63]
 Y = data['consensus']
-X = data.iloc[:,:62]
 
 labels = pd.unique(Y)
 
@@ -35,25 +35,11 @@ for label in labels:
 
 print (rep)
 
-##################
-# PRE-PROCESSING #
-##################
-
-# Normalization (comment it if want to check results with no normalization)
-#X = normalize(X, axis=0, norm='max')
-
-# Resampling (comment it if want to check results with no resampling)
-#X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
-
-# Smote (comment it if want to check results with no smote)
-#smote = smt(ratio='minority')
-#X, Y = smote.fit_sample(X, Y)
-
 ##########
 # KMEANS #
 ##########
 
-kmeans = MiniBatchKMeans(n_clusters=2, random_state=0, batch_size=6)
+kmeans = MiniBatchKMeans(n_clusters=5, random_state=0, batch_size=6)
 
 a = kmeans.fit(X)
 y_kmeans = kmeans.predict(X)
@@ -83,7 +69,7 @@ print (a)
 
 d = distance_matrix(X, X)
 
-spectral = SpectralClustering(2, affinity='precomputed', n_init=100, assign_labels='kmeans')
+spectral = SpectralClustering(5, affinity='precomputed', n_init=100, assign_labels='kmeans')
 
 reses = spectral.fit_predict(d)
 
@@ -100,4 +86,4 @@ plt.scatter(X.iloc[:,0], X.iloc[:,1], c=reses, s=50, cmap='viridis')
 
 plt.savefig('spectral.png')
 
-#plt.show()
+plt.show()

@@ -13,7 +13,7 @@ DISCRETIZATION HAS 0 INFLUENCE IN THE RESULTS ON CLASSIFICATION FOR KNN, NB, CAR
 ------------------------------------------------------------------------
 CLUSTERING:
 
-RESULTS FOR BASE SETS(NOT SMOTED, DISCRETIZED AND NORMALIZED)
+RESULTS FOR BASE SETS(NOT NORMALIZED)
 --      GREEN       --
 --K-MEANS--
 RAND SCORE
@@ -25,6 +25,18 @@ RAND SCORE
 0.0235611299965
 SILHOUETTE SCORE
 0.316534277368
+
+NORMALIZED:
+--K-MEANS--
+RAND SCORE
+-0.0181108862214
+SILHOUETTE SCORE
+0.3921597096
+--SPECTRAL--
+RAND SCORE
+0.0235611299965
+SILHOUETTE SCORE
+0.247941021807
 
 --      HINSELMANN      --
 --K-MEANS--
@@ -38,6 +50,18 @@ RAND SCORE
 SILHOUETTE SCORE
 0.0779314831609
 
+NORMALIZED:
+--K-MEANS--
+RAND SCORE
+-0.005782310674
+SILHOUETTE SCORE
+0.281623544813
+--SPECTRAL--
+RAND SCORE
+-0.0162487267789
+SILHOUETTE SCORE
+-0.00730686637634
+
 --      SCHILLER        --
 --K-MEANS--
 RAND SCORE
@@ -49,6 +73,16 @@ RAND SCORE
 0.0361297280641
 SILHOUETTE SCORE
 0.142354328355
+
+NORMALIZED:
+
+
+
+#########################
+# SMOTED AND NORMALIZED #
+#########################
+
+
 
 ------------------------------------------------------------------------
 Number of Rows
@@ -103,15 +137,66 @@ CHECKING FOR OUTLIERS COUNTS:
 -----------------------------------------------------------------------
 ALGORITHMS
 
--- CART --
-
--- FOREST --
-
 -- KNN --
+(GREEN)
+K=3:
+Sensivity media: 0.8690476190476192
+Specificity media: 0.8023809523809522
+Accuracy media: 83.57142857142856
+K=5
+Sensivity media: 0.8380952380952381
+Specificity media: 0.8166666666666667
+Accuracy media: 82.73809523809523
+K=11
+Sensivity media: 0.7047619047619047
+Specificity media: 0.8214285714285715
+Accuracy media: 76.30952380952381
+K=21
+Sensivity media: 0.45
+Specificity media: 0.9095238095238095
+Accuracy media: 67.97619047619047
+(HINSELMANN)
+K=3
+Sensivity media: 1.0
+Specificity media: 0.611111111111111
+Accuracy media: 80.55555555555556
+K=5
+Sensivity media: 0.9638888888888889
+Specificity media: 0.5291666666666666
+Accuracy media: 74.65277777777779
+K=11
+Sensivity media: 0.9291666666666666
+Specificity media: 0.39166666666666666
+Accuracy media: 66.04166666666667
+K=21
+Sensivity media: 0.8666666666666666
+Specificity media: 0.3208333333333333
+Accuracy media: 59.375
+(SCHILLER)
+K=3
+Sensivity media: 0.8976190476190476
+Specificity media: 0.6
+Accuracy media: 74.88095238095238
+K=5
+Sensivity media: 0.9261904761904762
+Specificity media: 0.5976190476190476
+Accuracy media: 76.19047619047619
+K=11
+Sensivity media: 0.8214285714285714
+Specificity media: 0.5404761904761904
+Accuracy media: 68.0952380952381
+K=21
+Sensivity media: 0.8547619047619047
+Specificity media: 0.4595238095238095
+Accuracy media: 65.7142857142857
 
 -- NAIVE BAYES --
 
--- SMOTE --
+
+
+-- CART --
+
+-- FOREST --
 
 ----------------------------------------------------------------------
 % of 0's per feature

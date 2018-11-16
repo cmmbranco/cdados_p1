@@ -3,13 +3,11 @@ import numpy as np
 
 from sklearn.feature_selection import chi2
 from sklearn.metrics import confusion_matrix
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors.classification import KNeighborsClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import normalize
 from sklearn.preprocessing import OneHotEncoder
-
-import pickle
-
+from imblearn.over_sampling import SMOTE as smt
 
 n_fold = 10
 
@@ -123,36 +121,26 @@ def widthnumericpreprocess(df, bins):
 
 green_data = pd.read_csv('../col_dataset/green.csv')
 
-X_green = green_data.iloc[:,:62]
 Y_green = green_data['consensus']
+Y_green = np.asarray(Y_green)
+green_labels = pd.unique(Y_green)
+X_green = pd.read_csv('../col_dataset/green_test.csv')
+X_green = X_green.iloc[:,1:]
 
 green_atribs = X_green.columns.values
 
-data_1, map = widthnumericpreprocess(X_green, 4)
+#data_1, map = widthnumericpreprocess(X_green, 4)
 
-print (data_1)
+#print (data_1)
 
-y = pd.DataFrame(data=data_1)
+#y = pd.DataFrame(data=data_1)
 
-y.to_csv('../col_dataset/green_test.csv')
-#-----------------------------------------#
-print (X_green)
-#-----------------------------------------#
-X_green = np.asarray(X_green)
+#y.to_csv('../col_dataset/green_test.csv')
 
-for i in X_green:
-    for j in i:
-        if j < 0:
-            print ('OLHA AQUI, SOU NEGATIVO')
-
-Y_green = green_data['consensus']
-
-green_labels = pd.unique(Y_green)
-
-Y_green = np.asarray(Y_green)
 
 chi, pval = chi2 (X_green, Y_green)
 
+print(chi)
 print(pval)
 
 pvals = []
@@ -160,18 +148,21 @@ atrib_todrop = []
 
 atri_index = 0
 for atrib in green_atribs:
-    if pval[atri_index] <= 0.01: # 99% confidence for discarding attributes
+    if pval[atri_index] <= 0.001:  #99% confidence for discarding attributes
+        print(atrib)
         atrib_todrop.append(atrib)
         atri_index += 1
     else:
         atri_index += 1
 
-green_data = pd.read_csv('../col_dataset/green.csv')
+print (atrib_todrop)
+
+green_data = pd.read_csv('../col_dataset/green_test.csv')
 
 bla = green_data.drop(atrib_todrop, axis=1)
 
-X_green = bla.iloc[:,:62]
-Y_green = bla['consensus']
+X_green = bla.iloc[:,1:]
+X_green = np.asarray(X_green)
 
 scores = []
 x_train = []
@@ -179,18 +170,30 @@ y_train = []
 x_test = []
 y_test = []
 
+#################
+# PREPROCESSING #
+#################
+# Normalization (comment it if want to check results with no normalization)
+X_green = normalize(X_green, axis=0, norm='max')
+
+# Resampling (comment it if want to check results with no resampling)
+#X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
+
+# Smote (comment it if want to check results with no smote)
+smote = smt(ratio='minority')
+X_green, Y_green = smote.fit_sample(X_green, Y_green)
+
 #######################
 #   CLASSIFICATION    #
 #######################
 
-
 kf = StratifiedKFold(n_splits=10, random_state=None, shuffle=False)
-clf = DecisionTreeClassifier()
+clf = KNeighborsClassifier(n_neighbors=3)
 
 for train_index, test_index in kf.split(X_green, Y_green):
-    print('TRAIN:', train_index, 'TEST:', test_index)
+    #print('TRAIN:', train_index, 'TEST:', test_index)
     x_train, x_test = X_green[train_index], X_green[test_index]
-    y_train, y_test = X_green[train_index], X_green[test_index]
+    y_train, y_test = Y_green[train_index], Y_green[test_index]
 
     clf.fit(x_train, y_train)
 
@@ -209,7 +212,7 @@ for train_index, test_index in kf.split(X_green, Y_green):
     total = trueNeg + truePos + falseNeg + falsePos
     acc = ((truePos+trueNeg)/total) * 100.0
     specificity = trueNeg/(trueNeg+falsePos)
-    sensivity = truPos / (truePos + falseNeg)
+    sensivity = truePos / (truePos + falseNeg)
 
     print(f'number of predictions was {total}')
     print(f'accuracy was {acc}')
