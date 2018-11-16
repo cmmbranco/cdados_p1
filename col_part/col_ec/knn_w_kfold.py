@@ -19,7 +19,6 @@ k = 21
 ##########################
 
 # Import some data to play with
-
 data = pd.read_csv('../col_dataset/schiller_normsmt.csv') #Change name to test other dataset
 
 X = data.iloc[:,1:62]

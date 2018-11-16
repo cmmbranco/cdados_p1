@@ -3,7 +3,6 @@ import numpy as np
 
 from sklearn.preprocessing import OneHotEncoder
 from mlxtend.frequent_patterns import apriori, association_rules
-from sklearn.feature_selection import chi2
 
 #############
 # FUNCTIONS #
@@ -139,12 +138,10 @@ def printmapping(mapping):
 # DATA IO AND GENERATION #
 ##########################
 
-data = pd.read_csv('../col_dataset/green_normsmtdisc.csv')
+data = pd.read_csv('../col_dataset/schiller.csv')
 
-X = data.iloc[:,1:187]
+X = data.iloc[:,:62]
 Y = data['consensus']
-
-print (X)
 
 #chi, pval = chi2(X, Y)
 
@@ -194,9 +191,8 @@ print (X)
 #    print (atrib)
 
 
-data_1 = X
-
-#data_1, map = widthnumericpreprocess(X, 3)
+#data_1 = X
+data_1, map = widthnumericpreprocess(X, 4)
 
 #####################
 # APRIORI ALGORITHM #
@@ -208,48 +204,53 @@ data_1 = X
     ########################################
 
 print('APRIORI ALGORITHM')
-freq_items = apriori(data_1, min_support=0.60, use_colnames=True)
+freq_items = apriori(data_1, min_support=0.90, use_colnames=True)
+
+print('Nr_frequent_items:')
+print (len(freq_items))
 
 print('ASSOCIATION RULES')
-rules = association_rules(freq_items, metric='lift', min_threshold=1.05)
+rules = association_rules(freq_items, metric='support', min_threshold=0.94)
 
 print(f'Total Associtation Rules: {len(rules)}')
 
-lifts = []
-convs_index = []
+media_lift = 0
+counter = 0
 
-after_lift = []
 for row in rules.iterrows():
-    if row[1].lift >= 1.05:
-        after_lift.append(row)
-        #print('Rows with lift > 1.05:')
-        #print('LIFT')
-        #print (row[1].lift)
-        #print('CONVICTION')
-        #print (row[1].conviction)
+    counter += 1
+    media_lift += row[1].lift
 
-print(f'Found {len(after_lift)} rules with lift > 1.05')
+media_lift = media_lift/counter
 
-after_conv = []
+print ('media lift')
+print (media_lift)
 
-iter = 0
+#lifts = []
+#convs_index = []
 
-print('Rule Respecting Criteria')
-for rule in rules.iterrows():
-    if rule[1].conviction <= 1.2:
-        after_conv.append(rule)
+#after_lift = []
+#for row in rules.iterrows():
+#   if row[1].lift >= 1.05:
+#        after_lift.append(row)
+#        print('Rows with lift > 1.05:')
+#        #print('LIFT')
+#        print (row[1].lift)
+#        print('CONVICTION')
+#        print (row[1].conviction)
 
-print(f'Found {len(after_conv)} rules with conviction <= 1.2 \n')
+#print(f'Found {len(after_lift)} rules with lift > 1.05')
 
-for rule in after_conv:
-    print (rule)
+#after_conv = []
 
-############
-# GRAPHICS #
-############
-#plt.xlim([-0.05, 1.05])
-#plt.ylim([-0.05, 1.05])
-#plt.xlabel('Support')
-#plt.ylabel('Nr_Rules')
-#plt.title('')
-#plt.show()
+#iter = 0
+
+#print('Rule Respecting Criteria')
+#for rule in rules.iterrows():
+#    if rule[1].conviction <= 1.2:
+#        after_conv.append(rule)
+
+#print(f'Found {len(after_conv)} rules with conviction <= 1.2 \n')
+
+#for rule in after_conv:
+#    print (rule)

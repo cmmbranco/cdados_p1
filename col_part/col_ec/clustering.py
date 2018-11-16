@@ -39,17 +39,11 @@ print (rep)
 # KMEANS #
 ##########
 
-kmeans = MiniBatchKMeans(n_clusters=5, random_state=0, batch_size=6)
+kmeans = MiniBatchKMeans(n_clusters=10, random_state=0, batch_size=6)
 
 a = kmeans.fit(X)
 y_kmeans = kmeans.predict(X)
 
-plt.scatter(X.iloc[:,0], X.iloc[:,1], c=y_kmeans, s=50, cmap='viridis')
-
-centers = kmeans.cluster_centers_
-plt.scatter(centers[:,0], centers[:,1], c='black', s=200, alpha=0.5)
-
-plt.savefig('kmeans.png')
 
 d = distance_matrix(X, X)
 
@@ -69,7 +63,7 @@ print (a)
 
 d = distance_matrix(X, X)
 
-spectral = SpectralClustering(5, affinity='precomputed', n_init=100, assign_labels='kmeans')
+spectral = SpectralClustering(10, affinity='precomputed', n_init=100, assign_labels='kmeans')
 
 reses = spectral.fit_predict(d)
 
@@ -81,9 +75,3 @@ print(score)
 print ('SILHOUETTE SCORE')
 a = silhouette_score(d, reses, metric='euclidean', sample_size=None, random_state=None)
 print (a)
-
-plt.scatter(X.iloc[:,0], X.iloc[:,1], c=reses, s=50, cmap='viridis')
-
-plt.savefig('spectral.png')
-
-plt.show()

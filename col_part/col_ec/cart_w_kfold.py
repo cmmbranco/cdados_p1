@@ -19,49 +19,14 @@ n_fold = 10
 ##########################
 # DATA IO and Generation #
 ##########################
+data = pd.read_csv('../col_dataset/green_normsmt.csv') #Change name to test other dataset
 
-green_data = pd.read_csv('../col_dataset/green.csv')
-hinselmann_data = pd.read_csv('../col_dataset/hinselmann.csv')
-schiller_data = pd.read_csv('../col_dataset/schiller.csv')
-
-green_featureNames = green_data.columns.values
-hinselmann_featureNames = hinselmann_data.columns.values
-schiller_featureNames = schiller_data.columns.values
-
-print ('nr_features green:')
-print (len(green_featureNames))
-print ('nr_features hinselmann:')
-print (len(hinselmann_featureNames))
-print ('nr_features schiller:')
-print (len(schiller_featureNames))
-
-X_green = green_data.iloc[:,:62]
-#X_hinselmann = hinselmann_data.iloc[:,:62]
-#X_schiller = schiller_data.iloc[:,:62]
-
-X_green = np.asarray(X_green)
-#X_hinselmann = np.asarray(X_hinselmann)
-#X_schiller = np.asarray(X_schiller)
-
-Y_green = green_data['consensus']
-#Y_hinselmann = hinselmann_data['consensus']
-#Y_schiller = schiller_data['consensus']
-
-green_labels = pd.unique(Y_green)
-#hinselmann_labels = pd.unique(Y_hinselmann)
-#schiller_labels = pd.unique(Y_schiller)
-
-Y_green = np.asarray(Y_green)
-#Y_hinselmann = np.asarray(Y_hinselmann)
-#Y_schiller = np.asarray(Y_schiller)
-
-##############
-#            #
-##############
-
-#X_green = pd.read_csv('../col_dataset/green_test.csv')
-#X_green = X_green.iloc[:,1:]
-#X_green = np.asarray(X_green)
+X = data.iloc[:,1:62]
+print(X)
+X = np.asarray(X)
+Y = data['consensus']
+labels = pd.unique(Y)
+Y = np.asarray(Y)
 
 kf = StratifiedKFold(n_splits = n_fold, random_state = None, shuffle = False)
 
@@ -74,7 +39,7 @@ y_test = []
 ###################################
 # CLASSIFICATION AND ROC ANALYSIS #
 ###################################
-clf = DecisionTreeClassifier()
+clf = DecisionTreeClassifier(max_features=30)
 
 tprs = []
 aucs = []
@@ -83,13 +48,17 @@ mean_fpr = np.linspace(0, 1, 100)
 i = 0
 fold = 0
 
-for train_index, test_index in kf.split(X_green, Y_green):
+sens = []
+spec = []
+accu = []
+
+for train_index, test_index in kf.split(X, Y):
     print('TRAIN:', train_index, 'TEST:', test_index)
-    x_train, x_test = X_green[train_index], X_green[test_index]
-    y_train, y_test = Y_green[train_index], Y_green[test_index]
+    x_train, x_test = X[train_index], X[test_index]
+    y_train, y_test = Y[train_index], Y[test_index]
 
     #Binarize the output
-    y_test_bin = label_binarize(y_test, green_labels)
+    y_test_bin = label_binarize(y_test, labels)
 
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
 
@@ -103,7 +72,7 @@ for train_index, test_index in kf.split(X_green, Y_green):
              label='ROC fold %d (AUC = %0.2f)' % (i, roc_auc))
 
     reses = clf.predict(x_test)
-    confusion = confusion_matrix(y_test, reses, green_labels)
+    confusion = confusion_matrix(y_test, reses, labels)
 
     trueNeg = confusion[0][0]
     truePos = confusion[1][1]
@@ -113,8 +82,11 @@ for train_index, test_index in kf.split(X_green, Y_green):
 
     total = trueNeg + truePos + falseNeg + falsePos
     acc = ((truePos + trueNeg) / total) * 100.0
+    accu.append(acc)
     specificity = trueNeg / (trueNeg + falsePos)
+    spec.append(specificity)
     sensivity = truePos / (truePos + falseNeg)
+    sens.append(sensivity)
 
     print(f"Performances for CART at fold {fold}")
     print(confusion)
@@ -125,6 +97,23 @@ for train_index, test_index in kf.split(X_green, Y_green):
     print("\n")
     fold += 1
     i += 1
+
+media_sensivity = 0
+media_specificity = 0
+media_accuracy = 0
+
+for i in range(10):
+    media_sensivity += sens[i]
+    media_specificity += spec[i]
+    media_accuracy += accu[i]
+
+media_sensivity = media_sensivity/10
+media_specificity = media_specificity/10
+media_accuracy = media_accuracy/10
+
+print(f'Sensivity media: {media_sensivity}')
+print(f'Specificity media: {media_specificity}')
+print(f'Accuracy media: {media_accuracy}')
 
 plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Random', alpha=.8)
 

@@ -1,34 +1,47 @@
 import matplotlib.pyplot as plt
+import numpy as np
+
 
 ######################
 # Parameters to pass K #
 ######################
 
-#rand = [0.2022, 0.5309, 0.2591, 0.2053]
-#silhouette = [0.5538, 0.3874, 0.0265, -0.2212]
-#kmeans = [2,5,10,20]
+sensitivity = [82.38095238095238, 83.0952380952381, 77.61904761904761]
+specificity = [69.04761904761905, 66.9047619047619, 73.57142857142857]
+accu = [75.71428571428571, 74.99999999999997, 75.5952380952381]
+nrforest = [5, 15, 30]
 
-#plt.plot(kmeans, rand, 'g', label=r'Rand Score')
-#plt.plot(kmeans, silhouette, 'r', label=r'Silhouette Score')
-#plt.plot(knn, acc, 'b', label=r'Accuracy')
+plt.plot(nrforest, sensitivity, 'g', label=r'Mean Sensitivity')
+plt.plot(nrforest, specificity, 'r', label=r'Mean Specificity')
+plt.plot(nrforest, accu, 'b', label=r'Mean Accuracy')
 
-#plt.xlabel('Nr_Clusters')
-#plt.ylabel('Performance (%)')
-#plt.title('Performance Chart for Clustering')
-#plt.legend(loc="lower right")
-#plt.show()
-
-sensivity = [40.266, 45.333, 50.666, 55.466, 61.866, 69.333, 85.600]
-specificity = [97.260, 97.465, 97.542, 94.822, 90.297, 91.001, 83.110]
-acc = [95.925, 96.243, 96.443, 93.899, 89.631, 90.493, 83.168]
-knn = [2, 20, 200, 600, 1000, 2000, 5000]
-
-plt.plot(knn, sensivity, 'g', label=r'Sensivity Rate')
-plt.plot(knn, specificity, 'r', label=r'Specificity Rate')
-plt.plot(knn, acc, 'b', label=r'Accuracy')
-
-plt.xlabel('Min_Samples_Split')
-plt.ylabel('Performance (%)')
-plt.title('Performance Chart for CART')
+plt.xlabel('Max_Features')
+plt.ylabel('Performance(%)')
+plt.title('Performance Chart for CART (GREEN)')
 plt.legend(loc="lower right")
 plt.show()
+
+#data to plot
+#n_groups = 3
+
+#create plot
+#fig, ax = plt.subplots()
+#index = np.arange(n_groups)
+#bar_width = 0.25
+#opacity = 0.5
+
+#sensivity = [63.80, 86.94, 80.95]
+#specificity = [85.00, 52.36, 66.19]
+#acc = [73.066, 92.390, 91.937]
+
+#plt.bar(index, sensivity, bar_width, color='g', label=r'Mean Sensitivity')
+#plt.bar(index + bar_width, specificity, bar_width, color='r', label=r'Mean Specificity')
+#plt.bar(index, acc, bar_width, color='orange', label=r'Mean Accuracy')
+
+
+#plt.xlabel('Measures')
+#plt.ylabel('Performance(%)')
+#plt.title('Performance Chart for NB')
+#plt.legend(loc="lower right")
+#plt.xticks(index, ('Sensitivity', 'Specificity','Accuracy'))
+#plt.show()

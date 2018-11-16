@@ -19,30 +19,14 @@ n_fold = 10
 ##########################
 
 # Import some data to play with
+data = pd.read_csv('../col_dataset/schiller_normsmt.csv') #Change name to test other dataset
 
-green_data = pd.read_csv('../col_dataset/green.csv')
-hinselmann_data = pd.read_csv('../col_dataset/hinselmann.csv')
-schiller_data = pd.read_csv('../col_dataset/schiller.csv')
-
-X_green = green_data.iloc[:,:62]
-#X_hinselmann = hinselmann_data.iloc[:,:62]
-#X_schiller = schiller_data.iloc[:,:62]
-
-X_green = np.asarray(X_green)
-#X_hinselmann = np.asarray(X_hinselmann)
-#X_schiller = np.asarray(X_schiller)
-
-Y_green = green_data['consensus']
-#Y_hinselmann = hinselmann_data['consensus']
-#Y_schiller = schiller_data['consensus']
-
-green_labels = pd.unique(Y_green)
-#hinselmann_labels = pd.unique(Y_hinselmann)
-#schiller_labels = pd.unique(Y_schiller)
-
-Y_green = np.asarray(Y_green)
-#Y_hinselmann = np.asarray(Y_hinselmann)
-#Y_schiller = np.asarray(Y_schiller)
+X = data.iloc[:,1:62]
+print(X)
+X = np.asarray(X)
+Y = data['consensus']
+labels = pd.unique(Y)
+Y = np.asarray(Y)
 
 kf = StratifiedKFold(n_splits=n_fold, random_state=None, shuffle=False)
 
@@ -52,32 +36,11 @@ y_train = []
 x_test = []
 y_test = []
 
-##############
-#            #
-##############
-
-#X_green = pd.read_csv('../col_dataset/green_test.csv')
-#X_green = X_green.iloc[:,1:]
-#X_green = np.asarray(X_green)
-
-##################
-# PRE-PROCESSING #
-##################
-
-# Normalization (comment it if want to check results with no normalization)
-X_green = normalize(X_green, axis=0, norm='max')
-
-# Resampling (comment it if want to check results with no resampling)
-#X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
-
-# Smote (comment it if want to check results with no smote)
-smote = smt(ratio='minority')
-X_green, Y_green = smote.fit_sample(X_green, Y_green)
 
 ###################################
 # CLASSIFICATION AND ROC ANALYSIS #
 ###################################
-clf = RandomForestClassifier(n_estimators=100)
+clf = RandomForestClassifier(n_estimators=1)
 
 tprs = []
 aucs = []
@@ -86,13 +49,17 @@ mean_fpr = np.linspace(0, 1, 100)
 i = 0
 fold = 0
 
-for train_index, test_index in kf.split(X_green, Y_green):
+sens = []
+spec = []
+accu = []
+
+for train_index, test_index in kf.split(X, Y):
     print("TRAIN:", train_index, "TEST:", test_index)
-    x_train, x_test = X_green[train_index], X_green[test_index]
-    y_train, y_test = Y_green[train_index], Y_green[test_index]
+    x_train, x_test = X[train_index], X[test_index]
+    y_train, y_test = Y[train_index], Y[test_index]
 
     # Binarize the output
-    y_test_bin = label_binarize(y_test, green_labels)
+    y_test_bin = label_binarize(y_test, labels)
     # n_classes_nb = y_test_bin_nb.shape[1]
 
     probas_ = clf.fit(x_train, y_train).predict_proba(x_test)
@@ -107,7 +74,7 @@ for train_index, test_index in kf.split(X_green, Y_green):
              label='ROC fold %d (AUC = %0.2f)' % (i, roc_auc))
 
     reses = clf.predict(x_test)
-    confusion = confusion_matrix(y_test, reses, green_labels)
+    confusion = confusion_matrix(y_test, reses, labels)
 
     trueNeg = confusion[0][0]
     truePos = confusion[1][1]
@@ -117,8 +84,11 @@ for train_index, test_index in kf.split(X_green, Y_green):
 
     total = trueNeg + truePos + falseNeg + falsePos
     acc = ((truePos + trueNeg) / total) * 100.0
+    accu.append(acc)
     specificity = trueNeg / (trueNeg + falsePos)
+    spec.append(specificity)
     sensivity = truePos / (truePos + falseNeg)
+    sens.append(sensivity)
 
     print(f"Performance for RandomForest at fold {fold}")
     print(confusion)
@@ -129,6 +99,23 @@ for train_index, test_index in kf.split(X_green, Y_green):
     print("\n")
     fold += 1
     i += 1
+
+media_sensivity = 0
+media_specificity = 0
+media_accuracy = 0
+
+for j in range(10):
+    media_sensivity += sens[j]
+    media_specificity += spec[j]
+    media_accuracy += accu[j]
+
+media_sensivity = media_sensivity/10
+media_specificity = media_specificity/10
+media_accuracy = media_accuracy/10
+
+print(f'Sensivity media: {media_sensivity}')
+print(f'Specificity media: {media_specificity}')
+print(f'Accuracy media: {media_accuracy}')
 
 plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r',
          label='Random', alpha=.8)
