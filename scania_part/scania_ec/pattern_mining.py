@@ -238,16 +238,16 @@ data = data.iloc[:,1:]
 Y = data['class']
 X = data.iloc[:,1:]
  
-print(f"staying features are: {len(atribs_to_stay)}")
+#print(f"staying features are: {len(atribs_to_stay)}")
 
 #for atrib in atribs_to_stay:
     #print(atrib)
 
 
 #print(X)
-print('numeric')
+#print('numeric')
 data_1, map = widthnumericpreprocess(X, 4)
-print('after')
+#print('after')
 dataatri = []
 # for atrib in data_1:
 #     dataatri.append(atrib)
@@ -255,7 +255,7 @@ dataatri = []
 #print(len(dataatri))
 #print(data_1)
 
-support = 0.6
+support = 0.98
 
 support_vec = []
 freq_items_len_vec = []
@@ -263,92 +263,96 @@ freq_items_len_vec = []
 n_rules = []
 avg_lift_vec = []
 
-while support <= 1:
-    print(support)
-    support_vec.append(support)
-    
-    
-    print('going apri')
+print(support)
+#support_vec.append(support)
+
+
+#print('going apri')
 #     atcount = 0
 #     for atrib in data_1:
 #         atcount += 1
 #         
 #     print(atcount)
-    
-    freq_items = apriori(data_1, min_support=support, use_colnames=True)
-    
-    if support > 0.8:
-        support += 0.0500
-    else:
-        support += 0.1000
-        
-    print(f"next support is: {support}")
+
+freq_items = apriori(data_1, min_support=support, use_colnames=True)
+
+# if support > 0.8:
+#    support += 0.0250
+# else:
+#    support += 0.1000
+   
+#print(f"next support is: {support}")
 #print(freq_items)
 
-    print('found frequent patterns:')
-    print(len(freq_items))
-    
-    freq_items_len_vec.append(len(freq_items))
+print('found frequent items:')
+print(len(freq_items))
 
-    
-    if (len(freq_items) < 530000 and len(freq_items) > 0):
-    
-        print('\n')
-        print('associating')
-        rules = association_rules(freq_items, metric="confidence", min_threshold=0.95)
-    
-    
-        print(f"total association rules {len(rules)}") 
-        
-        n_rules.append(len(rules)) 
-    
-        lifts = []
-        convs_index = []
-    
-        after_lift = [] 
-        for row in rules.iterrows():
-            lifts.append(row[1].lift)
-    #         if row[1].lift > 1.05 or row[1].lift < 0.95:
-    #             after_lift.append(row)
-    
-        
-        avg_lift = np.average(lifts)
-        
-        avg_lift_vec.append(avg_lift)
+#freq_items_len_vec.append(len(freq_items))
+
+
+
+#print('\n')
+#print('associating')
+rules = association_rules(freq_items, metric="confidence", min_threshold=0.95)
+
+
+print(f"total association rules {len(rules)}") 
+
+#n_rules.append(len(rules)) 
+
+lifts = []
+convs_index = []
+
+after_lift = [] 
+for row in rules.iterrows():
+    lifts.append(row[1].lift)
+    if row[1].lift > 1.05 or row[1].lift < 0.95:
+        after_lift.append(row)
+
+
+avg_lift = np.average(lifts)
+
+#avg_lift_vec.append(avg_lift)
+
+
+
+print(f"avg lift for rules were {avg_lift}")
+after_conv = []
+
+iter = 0
+
+  
+print("filtering by rules with lift < 0.95 or > 1.05")
+print(f"found {len(after_lift)}")
+for rule in after_lift:
+    if rule[1].conviction <= 1.2:
+        after_conv.append(rule)
+      
+
+print(f"found {len(after_conv)} rules with conviction <= 1.2 \n")
+
+print('printing rules')
      
-     
-    
-        #print(f"found {len(after_lift)} rules with lift > 1.05")
-        after_conv = []
-    
-        iter = 0
-     
-     
-        print("rule respecting criteria")
-        for rule in rules.iterrows():
-            if rule[1].conviction <= 1.2:
-                after_conv.append(rule)
-            
-    
-        print(f"found {len(after_conv)} rules with conviction <= 1.2 \n")
-        
-        #for rule in after_conv:
-            #print(rule)
+for rule in after_conv:
+    print(rule)
 
 #     for rule in after_conv:
 #         print(rule)
-y_pos = np.arange(max(avg_lift_vec))
-  
-plt.bar(y_pos, n_rules, align='center', alpha=0.5)
-plt.xticks(y_pos, support_vec, rotation ='vertical')
-plt.ylabel('Nº Freq Items')
-plt.title('Freq. Items by support')
-y_pos = np.arange(len(support_vec))
-#  y_pos = np.arange(len(support_vec))
-#
-# plt.bar(y_pos, freq_items_len_vec, align='center', alpha=0.5)
+# y_pos = np.arange(max(avg_lift_vec))
+#   
+# plt.bar(y_pos, n_rules, align='center', alpha=0.5)
 # plt.xticks(y_pos, support_vec, rotation ='vertical')
 # plt.ylabel('Nº Freq Items')
 # plt.title('Freq. Items by support')
- 
-plt.show()
+# y_pos = np.arange(len(support_vec))
+
+
+# y_pos = np.arange(max(freq_items_len_vec))
+# x_pos = np.arange(len(support_vec))
+# 
+# plt.bar(y_pos, freq_items_len_vec, align='center', alpha=0.5)
+# plt.xticks(x_pos, support_vec, rotation ='vertical')
+# plt.ylabel('Nº Freq Items')
+# plt.title('Freq. Items by support')
+#  
+# plt.show()
