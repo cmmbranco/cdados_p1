@@ -77,7 +77,7 @@ X_green, Y_green = smote.fit_sample(X_green, Y_green)
 ###################################
 # CLASSIFICATION AND ROC ANALYSIS #
 ###################################
-clf = RandomForestClassifier()
+clf = RandomForestClassifier(n_estimators=100)
 
 tprs = []
 aucs = []

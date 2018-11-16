@@ -71,21 +71,6 @@ y_train = []
 x_test = []
 y_test = []
 
-##################
-# PRE-PROCESSING #
-##################
-
-# Normalization (comment it if want to check results with no normalization)
-X_green = normalize(X_green, axis=0, norm='max')
-
-# Resampling (comment it if want to check results with no resampling)
-#X_hinselmann, Y_hinselmann = resample(X_hinselmann, Y_hinselmann)
-
-# Smote (comment it if want to check results with no smote)
-smote = smt(ratio='minority')
-X_green, Y_green = smote.fit_sample(X_green, Y_green)
-
-
 ###################################
 # CLASSIFICATION AND ROC ANALYSIS #
 ###################################
@@ -147,9 +132,7 @@ mean_tpr = np.mean(tprs, axis = 0)
 mean_tpr[-1] = 1.0
 mean_auc = auc(mean_fpr, mean_tpr)
 std_auc = np.std(aucs)
-plt.plot(mean_fpr, mean_tpr, color='b',
-         label=r'Mean ROC (AUC = %0.2f $\pm$ %0.2f)' % (mean_auc, std_auc),
-         lw=2, alpha=.8)
+plt.plot(mean_fpr, mean_tpr, color='b', label=r'Mean ROC (AUC = %0.2f $\pm$ %0.2f)' % (mean_auc, std_auc), lw=2, alpha=.8)
 
 std_tpr = np.std(tprs, axis=0)
 tprs_upper = np.minimum(mean_tpr + std_tpr, 1)
